@@ -1,0 +1,35 @@
+<div class="container mt-5 pt-5">
+    <div class="container col-xs-12 col-sm-12 col-md-6 col-lg-6">
+       <!-- <ngb-alert id="uno" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>-->
+        <h2 class="text-center margin">Iniciar Sesión</h2>
+        <form (ngSubmit)="onLogin()" class="mt-4 accesibilidad">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Dirección de correo</label>
+                <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="juan@gmail.com" required>
+                <small id="emailHelp" class="form-text text-muted">No compartiremos tu correo con nadie.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info btn-block">Ingresar</button>
+            </div>
+        </form>
+
+        <div class="form-group text-center">
+            <button (click)="onGoogleLogin()" class="btn btn-info btn-sm accesibilidad"><i class="fab fa-google"></i> Ingresa con Google</button>
+        </div>
+        <div class="form-group text-center">
+            <a [routerLink]="['/sms-login']" routerLinkActive="router-link-active" class="btn btn-info btn-sm accesibilidad"> Ingresa con SMS</a>
+        </div>
+
+        <p class="text-center accesibilidad">Crear una cuenta
+            <a [routerLink]="['/register']" routerLinkActive="router-link-active">Registarse</a>
+        </p>
+        <p class="text-center accesibilidad">
+            <a [routerLink]="['/forgot-password']" routerLinkActive="router-link-active">¿Olvidaste tu contraseña?</a>
+        </p>
+    </div>
+
+</div>

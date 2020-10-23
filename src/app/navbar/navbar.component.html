@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark posicion">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" href="#">
+        <img src="../../assets/diamante.png" width="40" height="30" alt="">
+    </a>
+
+    <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['home']">Inicio</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLink]="['/joyas',1]">
+            Joyas
+          </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/joyas',2]">Anillos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',3]">Colgantes</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',4]">Pulseras</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',5]">Collares</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',6]">Broches</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',7]">Cadenas</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',8]">Pendientes</a>
+                </div>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/joyas',9]">Compromiso</a>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/joyas',10]">Alianzas</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLink]="['/joyas',11]">
+            Hombre
+          </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/joyas',12]">Gemelos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',13]" href="#">Collares</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',14]">Cadenas</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',15]">Esclavas</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',16]">Anillos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',17]">Pendientes</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLink]="['/joyas',18]">
+            Niños
+          </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/joyas',19]">Anillos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',20]">Pulseras</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',21]">Colgantes</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/joyas',22]">Pendientes</a>
+                </div>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['about']">Acerca de</a>
+            </li>
+
+            
+            
+
+        </ul>
+       <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Joyas" aria-label="Buscar">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
+        </div>
+       
+            
+      
+            <!--
+                <li style="padding: 15px 0px; font-size: small;">
+              <a aria-label="Carrito" [routerLink]="['carrito']" class="ico">
+                <i class="fas fa-2x fa-cart-plus"></i>
+              </a>
+            </li>
+                <li class="submenu">
+              <a aria-label="Carrito" [routerLink]="['login']" class="ico">
+                <i class="fas fa-2x fa-sign-in-alt" style="margin-right: 40px;"></i>
+              </a>
+              <ul>
+                <li class="bordes"><a href="#">Iniciar sesión</a></li>
+                <li class="bordes"><a href="#">Registrarme</a></li>
+                <li class="bordes"><a href="#">Cerrar sesión</a></li>
+              </ul>
+            </li>-->
+            
+    </div>
+</nav>

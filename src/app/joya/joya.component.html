@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row filtrar">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="card" style="width: 22rem;">
+                <img class="card-img-top" src="../../assets/anillos.jpg" alt="Card image cap">
+              </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+            <p class="h2"><strong>Anillo con hermosa piedra amarilla</strong> </p>
+            <hr>
+            <p class="h1">$255.00</p>
+            <p class="mt-4 h6">ID: 12345</p>
+            <!--*nIf Solo se pondra cuando sean anillos-->
+                <div class="form-group">
+                    <label for="inputState" class="h5">Tamaño</label>
+                    <select id="inputState" class="form-control col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+                      <option value="#" selected>Seleccionar</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+                    <small>Tienes problemas con tu talla <a [routerLink]="['/guianillos']">Da click aqui</a></small>
+                </div>
+            <!--Fin *ngIf-->
+            
+            <div class="input-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Cantidad</span>
+                </div>
+                <input type="text" class="form-control">
+            </div>
+            <button type="button" class="btn btn-info btn-lg btn-block mt-2">
+                Añadir al carrito
+            </button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-4"></div>
+        <div class="jumbotron col-xs-12 col-sm-12 col-md-7 col-lg-7">
+            <h5 class="mt-1"><strong>Descripción:</strong></h5>
+            <hr>
+            <p class="h6"><!-- Descripcion del producto -->
+                Material: Plata 925
+            </p>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
