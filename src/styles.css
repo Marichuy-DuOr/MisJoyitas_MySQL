@@ -23,6 +23,16 @@ body {
     src: url(Bellota-Regular.ttf);
 }
 
+.filtrar {
+    margin-top: 120px;
+}
+
+.top{
+    font-family: 'Lobster';
+    font-size: 40px;
+    text-align: center;
+}
+
 /* --- Topbar --- */
 .topbar{
     position: absolute;
@@ -238,6 +248,29 @@ body {
     margin-bottom: 50px;
 }
 
+/*--- Backtotop ---*/
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom:20px; 
+    right:20px; 
+    width:36px; 
+    height:36px;
+    z-index: 99;
+    font-size: 16px;
+    text-align:center;
+    border: none;
+    outline: none;
+    background-color:#04B4AE;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    opacity: 0.35;
+  }
+  
+  #myBtn:hover {
+    opacity:1;
+  }
 
 /* --- Footer ---*/
 
@@ -258,31 +291,7 @@ footer {
     font-weight: bold;
 }
 
-/* --- Register y Login ---*/
-.margin{
-  margin-top: 30px;
-  font-family: 'Lobster';
-  font-size: 40px;
-}
-
-/* --- Guia de anillos --- */
-.top{
-  margin-top: 120px;
-  font-family: 'Lobster';
-  font-size: 40px;
-  text-align: center;
-}
-
-/* --- Preguntas Frecuentes --- */
-.preg {
-  margin-top: 120px;
-}
-
 /* --- Joyas --- */
-.filtrar {
-    margin-top: 120px;
-}
-
 .titulo-joyas {
   font-family: 'Lobster';
   font-size: 40px;
@@ -292,8 +301,6 @@ footer {
 .producto{
     cursor: pointer;
 }
-
-/* --- Joya --- */
 
 /* --- About --- */
 .about{
@@ -311,4 +318,13 @@ footer {
     -webkit-box-shadow: 0 0 5px 5px#888;
     box-shadow: 0 0 5px 5px #888;
 }
+
+/* --- Login --- */
+.form__top {
+	width: 100%;
+	padding: 2rem 0 1rem;
+	border-top: solid .4rem#04B4AE;
+	margin-bottom: 1rem;
+}
+
 
