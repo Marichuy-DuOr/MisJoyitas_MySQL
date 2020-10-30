@@ -1,31 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-//import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: []
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
-  }); 
+    correo: new FormControl('', [Validators.required, Validators.email]),
+    contrasena: new FormControl('', Validators.required)
+  });
 
-  constructor(private router: Router) { }
+  private subscription: Subscription = new Subscription();
+
+  constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     document.getElementById('uno').style.display = 'none';
+    document.getElementById('dos').style.display = 'none';
   }
 
-  async onLogin() {
-
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
-  async onGoogleLogin() {
+  onLogin() {
+    if (this.loginForm.valid) {
+      this.subscription.add(
+        this.authSvc.login(this.loginForm.value).subscribe((res) => {
+          if (res) {
+            this.router.navigate(['']);
+          }
+        })
+      );
+    } else {
+      document.getElementById('uno').style.display = 'block';
+      setTimeout(() => document.getElementById('uno').style.display = 'none', 5000);
+    }
   }
 
   cerrar(alerta: string) {

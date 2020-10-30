@@ -1,0 +1,155 @@
+<div class="container mt-5 pt-5">
+    <h1 class="top">Productos</h1>
+    <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
+    <ngb-alert id="dos" type="success" (close)="cerrar('dos')">El registro se hizo correctamente</ngb-alert>
+    <ngb-alert id="tres" type="info" (close)="cerrar('tres')">El registro se elimino</ngb-alert>
+
+    <form (ngSubmit)="newProducto(newProductoForm.value)" [formGroup]="newProductoForm" class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 accesibilidad">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Descripción</label>
+                <textarea class="form-control" rows="5" formControlName="descripcion"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Material</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineRadio1" value="0" formControlName="material">
+                    <label class="form-check-label" for="inlineRadio1">Oro</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineRadio2" value="1" formControlName="material">
+                    <label class="form-check-label" for="inlineRadio2">Plata</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Tipo</label>
+                <select class="form-control" id="exampleFormControlSelect1" formControlName="tipo">
+                    <option value="2">Anillos</option>
+                    <option value="3">Colgantes</option>
+                    <option value="4">Pulseras</option>
+                    <option value="5">Collares</option>
+                    <option value="6">Broches</option>
+                    <option value="7">Cadenas</option>
+                    <option value="8">Pendientes</option>
+                    <option value="9">Anillos de compromiso</option>
+                    <option value="10">Alianzas</option>
+                    <option value="12">Gemelos</option>
+                    <option value="13">Collares Hombre</option>
+                    <option value="14">Cadenas Hombre</option>
+                    <option value="15">Esclavas Hombre</option>
+                    <option value="16">Anillos Hombre</option>
+                    <option value="17">Pendientes Niño</option>
+                    <option value="19">Anillos Niño</option>
+                    <option value="20">Pulseras Niño</option>
+                    <option value="21">Colgantes Niño</option>
+                    <option value="22">Pendientes Niño</option>
+                </select>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputPassword1">Precio</label>
+                    <input type="number" class="form-control" formControlName="precio_venta" placeholder="Venta">
+                </div>
+                <div class="col">
+                    <label for="exampleInputEmail1">Cantidad mínima en el inventario</label>
+                    <input type="number" class="form-control" formControlName="minimo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Imagen</label>
+                <input type="url" class="form-control" formControlName="imagen" placeholder="URL">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-info btn-block" value="Agregar">
+            </div>
+
+
+        </div>
+    </form>
+</div>
+
+<div class="row mt-5 mx-5" *ngIf="productos; else loading">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table accesibilidad">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Precio venta</th>
+                        <th scope="col">Tipo</th>
+
+                        <th scope="col">Mínimo</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos">
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.descripcion}}</td>
+
+                        <container-element [ngSwitch]="producto.material">
+                            <td *ngSwitchCase="0">Oro</td>
+                            <td *ngSwitchCase="1">Plata</td>
+                        </container-element>
+
+                        <td>$ {{producto.precio_venta}}</td>
+
+                        <container-element [ngSwitch]="producto.tipo">
+                            <td *ngSwitchCase="2">Anillos</td>
+                            <td *ngSwitchCase="3">Colgantes</td>
+                            <td *ngSwitchCase="4">Pulseras</td>
+                            <td *ngSwitchCase="5">Collares</td>
+                            <td *ngSwitchCase="6">Broches</td>
+                            <td *ngSwitchCase="7">Cadenas</td>
+                            <td *ngSwitchCase="8">Pendientes</td>
+                            <td *ngSwitchCase="9">Anillos de compromiso</td>
+                            <td *ngSwitchCase="10">Alianzas</td>
+                            <td *ngSwitchCase="12">Gemelos</td>
+                            <td *ngSwitchCase="13">Collares Hombre</td>
+                            <td *ngSwitchCase="14">Cadenas Hombre</td>
+                            <td *ngSwitchCase="15">Esclavas Hombre</td>
+                            <td *ngSwitchCase="16">Anillos Hombre</td>
+                            <td *ngSwitchCase="17">Pendientes Hombre</td>
+                            <td *ngSwitchCase="19">Anillos Niño</td>
+                            <td *ngSwitchCase="20">Pulseras Niño</td>
+                            <td *ngSwitchCase="21">Colgantes Niño</td>
+                            <td *ngSwitchCase="22">Pendientes Niño</td>
+                        </container-element>
+
+                        <td>{{producto.minimo}}</td>
+                        <td><img style="width: 8rem;" [src]="producto.imagen"></td>
+                        <td>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <button type="button" class="btn btn-secondary" (click)="editProducto(producto.id)"><i class="far fa-edit"></i></button>
+                                <button type="button" class="btn btn-secondary" (click)="deleteProducto(producto.id)"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="row text-center mt-5 pt-5">
+        <div class="col">
+            <i class="fas fa-sync-alt fa-5x fa-spin"></i>
+        </div>
+    </div>
+</ng-template>

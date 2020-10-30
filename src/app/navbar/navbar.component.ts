@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserResponse } from '../shared/models/user.interface';
+import { AuthService } from './../authentication/services/auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  public user$: Observable<UserResponse> = this.authSvc.user$;
+
+  constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
