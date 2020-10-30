@@ -15,12 +15,18 @@ import { FormasPagoComponent } from './formas-pago/formas-pago.component';
 import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { ProductosComponent } from './admin/productos/productos.component';
+import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
+import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
+
+import { CanGuard } from './authentication/guards/can-guard';
+import { CanAdminGuard } from './authentication/guards/can-admin-guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'joyas/:id', component: JoyasComponent},
-  {path: 'joya/:id', component: JoyaComponent},
+  {path: 'joyas/:id', component: JoyasComponent, canActivate: [CanGuard]},
+  {path: 'joya/:id', component: JoyaComponent, canActivate: [CanGuard]},
   {path: 'contacto', component: ContactoComponent},
   {path: 'carrito', component: CarritoComponent},
   {path: 'buscador', component: BuscadorComponent},
@@ -32,6 +38,9 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'opciones-admin', component: OpcionesAdminComponent, canActivate: [CanAdminGuard]},
+  {path: 'productos', component: ProductosComponent, canActivate: [CanAdminGuard]},
+  {path: 'cambiar-roles', component: CambiarRolesComponent, canActivate: [CanAdminGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},
 ];
