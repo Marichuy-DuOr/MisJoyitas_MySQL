@@ -323,8 +323,14 @@ footer {
 .form__top {
 	width: 100%;
 	padding: 2rem 0 1rem;
-	border-top: solid .4rem#04B4AE;
+	border-top: solid .4rem#ae04b4;
 	margin-bottom: 1rem;
 }
 
+/* --- Carrito Vacío --- */
+.c-v{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
