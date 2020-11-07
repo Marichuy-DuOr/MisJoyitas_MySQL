@@ -18,6 +18,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'joyas/:id', component: JoyasComponent, canActivate: [CanGuard]},
   {path: 'joya/:id', component: JoyaComponent, canActivate: [CanGuard]},
+  {path: 'perfil-usuario', component: PerfilUsuarioComponent, canActivate: [CanGuard]},
   {path: 'contacto', component: ContactoComponent},
   {path: 'carrito', component: CarritoComponent},
   {path: 'buscador', component: BuscadorComponent},

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
+import { MysqlService } from './../../services/mysql.service';
+import { environment } from '../../../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +13,7 @@ import { AuthService } from './../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  public municipios;
 
   public newUserForm = new FormGroup({
     nombre: new FormControl('', Validators.required),
@@ -18,10 +22,18 @@ export class RegisterComponent implements OnInit {
     correo: new FormControl('', [Validators.required, Validators.email]),
     telefono: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]),
     contrasena: new FormControl('', Validators.required),
-    contrasenaVerf: new FormControl('', Validators.required)
+    contrasenaVerf: new FormControl('', Validators.required),
+
+    colonia: new FormControl('', Validators.required),
+    calle: new FormControl('', Validators.required),
+    id_municipio: new FormControl('', Validators.required),
+    numero: new FormControl('', Validators.required),
+    interior: new FormControl(Validators.nullValidator),
+    cp: new FormControl('', [ Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(5), Validators.maxLength(5)]),
+    busqueda: new FormControl(Validators.nullValidator)
   });
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private mysqlService: MysqlService, private router: Router) {
     this.newUserForm.setValue({
       nombre: '',
       ape_pat: '',
@@ -29,7 +41,15 @@ export class RegisterComponent implements OnInit {
       correo: '',
       telefono: '',
       contrasena: '',
-      contrasenaVerf: ''
+      contrasenaVerf: '',
+
+      colonia: '',
+      calle: '',
+      id_municipio: '',
+      numero: '',
+      interior: '',
+      cp: '',
+      busqueda: ''
     });
   }
 
@@ -40,7 +60,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public newUser(form) {
-
     if (this.newUserForm.valid) {
       const body = {
         nombre: form.nombre,
@@ -48,8 +67,10 @@ export class RegisterComponent implements OnInit {
         ape_mat: form.ape_mat,
         correo: form.correo,
         telefono: form.telefono,
-        contrasena: form.contrasena
+        contrasena: form.contrasena,
+
       };
+
 
       if (body.contrasena === form.contrasenaVerf) {
         this.authService.register(body).then((data) => {
@@ -57,12 +78,28 @@ export class RegisterComponent implements OnInit {
             document.getElementById('tres').style.display = 'block';
             setTimeout(() => document.getElementById('tres').style.display = 'none', 5000);
           } else {
-            this.router.navigate(['/login']);
+            const body2 = {
+              id_usuario: data['array'].insertId, // consigue llave foranea del registro que acaba de ser creado
+              colonia: form.colonia,
+              calle: form.calle,
+              id_municipio: form.id_municipio,
+              numero: form.numero,
+              interior: form.interior,
+              cp: form.cp
+            };
+            this.mysqlService.altaNoT(`${environment.API_URL}/registerDom`, body2)
+            .then((laData) => {
+              this.router.navigate(['/login']);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           }
         })
         .catch((err) => {
           console.log(err);
         });
+
       } else {
         document.getElementById('dos').style.display = 'block';
         setTimeout(() => document.getElementById('dos').style.display = 'none', 5000);
@@ -72,6 +109,14 @@ export class RegisterComponent implements OnInit {
       setTimeout(() => document.getElementById('uno').style.display = 'none', 5000);
     }
 
+  }
+
+  public getMunicipio(busqueda) {
+    this.mysqlService.consultaNoT(`${environment.API_URL}/municipio/${busqueda}` )
+      .subscribe((res: any) => {
+        // console.log(res.array);
+        this.municipios = res.array;
+      });
   }
 
   cerrar(alerta: string) {
