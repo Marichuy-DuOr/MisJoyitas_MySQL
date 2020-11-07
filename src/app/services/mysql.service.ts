@@ -31,6 +31,10 @@ export class MysqlService {
     });
   }
 
+  consultaNoT(url: string) {
+    return this.httpClient.get(url);
+  }
+
   delete(url: string) {
     const elUser = this.authSvc.userValue;
 
@@ -62,5 +66,9 @@ export class MysqlService {
         elUser.token
       ),
     }).toPromise();
+  }
+
+  altaNoT(url: string, body: any) {
+    return this.httpClient.post(url, body).toPromise();
   }
 }

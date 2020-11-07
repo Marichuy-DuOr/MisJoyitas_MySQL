@@ -9,11 +9,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">{{ user.nombre }}</a>
+                        <a [routerLink]="['perfil-usuario']" class="ico">
+                            {{ user.nombre }}
+                        </a>
                     </li>
                     <li class="nav-item" style="cursor: pointer ">
                         <!--<a class="nav-link" (click)="onLogout()">Logout</a>-->
-                        <a aria-label="Carrito" (click)="onLogout()" class="ico" data-toggle="tooltip" data-placement="left" title="Salir">
+                        <a (click)="onLogout()" class="ico">
                           Logout
                         </a>
                     </li>

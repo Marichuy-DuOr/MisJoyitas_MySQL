@@ -1,0 +1,159 @@
+<div class="container filtrar">
+    <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
+    <ngb-alert id="dos" type="success" (close)="cerrar('dos')">Se registraron los datos correctamente</ngb-alert>
+    <div class="row" *ngIf="user; else loading">
+        <div class="col-md-3 col-lg-3" *ngIf="this.estado!='1'"></div>
+        <div class="col" *ngIf="this.estado=='1'">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col" colspan="5" class="text-center">Perfil de Usuario</th>
+                            <th scope="col" class="text-center">
+                                <button type="button" class="btn btn-secondary" (click)="editUser()"><i class="far fa-edit"></i></button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Nombre</th>
+                            <td colspan="5">{{user.nombre}} {{user.ape_pat}} {{user.ape_mat}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Correo</th>
+                            <td colspan="2">{{user.correo}}</td>
+                            <th colspan="1">Teléfono</th>
+                            <td colspan="2">{{user.telefono}}</td>
+                        </tr>
+                        <tr class="table-success">
+                            <th scope="col" colspan="5" class="text-center">Dirección</th>
+                            <th scope="col" class="text-center">
+                                <button type="button" class="btn btn-secondary" (click)="editDireccion()"><i class="far fa-edit"></i></button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Estado</th>
+                            <td>{{user.estado}}</td>
+                            <th>Municipio</th>
+                            <td>{{user.municipio}}</td>
+                            <th>CP</th>
+                            <td>{{user.cp}}</td>
+                        </tr>
+                        <tr>
+                            <th>Colonia</th>
+                            <td>{{user.colonia}}</td>
+                            <th>Calle</th>
+                            <td>{{user.calle}}</td>
+                            <th>Numero</th>
+                            <td>#{{user.numero}} {{user.interior}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card col-xs-12 col-sm-12 col-md-6 col-lg-6" *ngIf="this.estado=='2'">
+
+            <div class="card-body">
+                <form (ngSubmit)="editUsuario(editUserForm.value)" class="mt-4" [formGroup]="editUserForm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Juan" required>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Apellido paterno</label>
+                            <input type="text" class="form-control" formControlName="ape_pat" placeholder="Muñoz" required>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Apellido materno</label>
+                            <input type="text" class="form-control" formControlName="ape_mat" placeholder="López" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Teléfono</label>
+                        <input type="tel" class="form-control" formControlName="telefono" placeholder="4491234567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Guardar Datos</button>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-secondary" (click)="regresar()">Regresar</button>
+            </div>
+
+        </div>
+
+        <div class="card col-xs-12 col-sm-12 col-md-6 col-lg-6" *ngIf="this.estado=='3'">
+
+            <div class="card-body">
+
+                <form (ngSubmit)="editDirecc(editDireccionForm.value)" class="mt-4" [formGroup]="editDireccionForm">
+
+                    <label for="exampleInputEmail1">Dirección</label>
+
+                    <div class="form-group form-row">
+
+                        <div class="col">
+                            <label for="exampleInputEmail1">Buscar municipio</label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" formControlName="busqueda" placeholder="aguascalientes">
+                        </div>
+                        <div class="col">
+                            <button (click)="getMunicipio(editDireccionForm.value.busqueda)" class="btn btn-info">Buscar</button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="municipios" class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="id_municipio">
+                        <option *ngFor="let municipio of municipios" value="{{municipio.id}}">
+                            {{municipio.municipio}} , {{municipio.estado}}
+                        </option>
+                    </select>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Colonia</label>
+                            <input type="text" class="form-control" formControlName="colonia" required>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Calle</label>
+                            <input type="text" class="form-control" formControlName="calle" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Numero</label>
+                            <input type="number" class="form-control" formControlName="numero" required>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Interior</label>
+                            <input type="text" class="form-control" formControlName="interior">
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Codigo Postal</label>
+                            <input type="number" class="form-control" formControlName="cp" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block accesibilidad">Actuaizar datos</button>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-secondary" (click)="regresar()">Regresar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="row text-center mt-5 pt-5">
+        <div class="col">
+            <i class="fas fa-sync-alt fa-5x fa-spin"></i>
+        </div>
+    </div>
+</ng-template>

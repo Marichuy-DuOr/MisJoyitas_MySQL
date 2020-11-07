@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -57,13 +59,15 @@ import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.compo
     ForgotPasswordComponent,
     ProductosComponent,
     OpcionesAdminComponent,
-    CambiarRolesComponent
+    CambiarRolesComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgbModule
   ],
   providers: [
