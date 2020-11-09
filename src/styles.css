@@ -327,10 +327,29 @@ footer {
 	margin-bottom: 1rem;
 }
 
-/* --- Carrito Vacío --- */
+/* --- Carrito--- */
 .c-v{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.resumen {
+    font-family: 'Cream Cake';
+    text-align: center;
+}
+
+.m {
+    margin-left: 200px;
+}
+
+.credito {
+    margin: auto;
+    width: 100px;
+    height: 50px;
+ }
+
+ .subtitulo {
+    font-family: 'Lobster';
+    text-align: left;
+}
