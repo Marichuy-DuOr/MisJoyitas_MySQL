@@ -1,41 +1,51 @@
-<div class="container">
+<div class="container" *ngIf="this.joya; else loading">
     <div class="row filtrar">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="card" style="width: 22rem;">
-                <img class="card-img-top" src="../../assets/anillos.jpg" alt="Card image cap">
-              </div>
+                <img class="card-img-top" [src]="this.joya.imagen" alt="Card image cap">
+            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <p class=" top">Anillo con hermosa piedra amarilla</p>
+         <ngb-alert style="display: none;" id="uno" type="danger" (close)="cerrar('uno')">No llenaste correctamente
+                el campo cantidad</ngb-alert>
+            <ngb-alert style="display: none;" id="dos" type="success" (close)="cerrar('dos')">Se agregó al carrito
+            </ngb-alert>
+            <ngb-alert style="display: none;" id="tres" type="danger" (close)="cerrar('tres')">No hay existencias
+                suficientes</ngb-alert>
+
+            <p class=" top">{{this.joya.nombre}}</p>
             <hr>
-            <p class="h1">$255.00</p>
-            <p class="mt-4 h6">ID: 12345</p>
+            <p class="h1">${{this.joya.precio_venta}}.00</p>
+            <p class="mt-4 h6">ID: {{this.idDoc}}</p>
             <!--*nIf Solo se pondra cuando sean anillos-->
-                <div class="form-group">
-                    <label for="inputState" class="h5">Tamaño</label>
-                    <select id="inputState" class="form-control col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
-                      <option value="#" selected>Seleccionar</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                    </select>
-                    <small>Tienes problemas con tu talla <a [routerLink]="['/guianillos']">Da click aqui</a></small>
-                </div>
-            <!--Fin *ngIf-->
-            
-            <div class="input-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Cantidad</span>
-                </div>
-                <input type="text" class="form-control">
+            <div class="form-group" *ngIf="this.bandera">
+                <label for="inputState" class="h5">Tamaño</label>
+                <select id="inputState" class="form-control col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+                    <option value="#" selected>Seleccionar</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                </select>
+                <small>Tienes problemas con tu talla <a [routerLink]="['/guianillos']">Da click aqui</a></small>
             </div>
-            <button type="button" class="btn btn-danger btn-lg btn-block mt-2">
-                Añadir al carrito
-            </button>
+            <!--Fin *ngIf-->
+
+            <form [formGroup]="cantidadForm" (ngSubmit)="alta(this.idDoc)" class="mt-4">
+                <div class="input-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Cantidad</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="cantidad">
+                </div>
+                <button type="submit" class="btn btn-danger btn-lg btn-block mt-2">
+                    Añadir al carrito
+                </button>
+            </form>
+
         </div>
     </div>
     <div class="row mt-2">
@@ -43,10 +53,22 @@
         <div class="jumbotron col-xs-12 col-sm-12 col-md-7 col-lg-7">
             <h5 class="mt-1"><strong>Descripción:</strong></h5>
             <hr>
-            <p class="h6"><!-- Descripcion del producto -->
-                Material: Plata 925
+            <p class="h6">
+                <!-- Descripcion del producto -->
+                Material: {{this.material}}
+            </p>
+            <p class="h6">
+                {{this.joya.descripcion}}
             </p>
         </div>
         <div class="col"></div>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="row text-center mt-5 pt-5 ">
+        <div class="col ">
+            <i class="fas fa-sync-alt fa-5x fa-spin "></i>
+        </div>
+    </div>
+</ng-template>
