@@ -34,6 +34,10 @@ import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
+import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
+import { ComprasComponent } from './admin/compras/compras.component';
+import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
     ProductosComponent,
     OpcionesAdminComponent,
     CambiarRolesComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    ProveedoresComponent,
+    PreciosProveedoresComponent,
+    ComprasComponent,
+    ConsultaComprasComponent
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,10 @@ import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
+import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
+import { ComprasComponent } from './admin/compras/compras.component';
+import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -42,7 +46,11 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'opciones-admin', component: OpcionesAdminComponent, canActivate: [CanAdminGuard]},
   {path: 'productos', component: ProductosComponent, canActivate: [CanAdminGuard]},
+  {path: 'proveedores', component: ProveedoresComponent, canActivate: [CanAdminGuard]},
+  {path: 'precios-proveedores', component: PreciosProveedoresComponent, canActivate: [CanAdminGuard]},
   {path: 'cambiar-roles', component: CambiarRolesComponent, canActivate: [CanAdminGuard]},
+  {path: 'compras', component: ComprasComponent, canActivate: [CanAdminGuard]},
+  {path: 'consulta-compras', component: ConsultaComprasComponent, canActivate: [CanAdminGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},
 ];

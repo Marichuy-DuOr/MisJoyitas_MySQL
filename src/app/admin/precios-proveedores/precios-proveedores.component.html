@@ -1,0 +1,99 @@
+<div class="container mt-5 pt-5">
+    <h1 class="top">Productos por proveedor</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">El campo no ha sido llenado!!</ngb-alert>
+            <ngb-alert id="dos" type="info" (close)="cerrar('dos')">Alguno de los campos esta incorrecto o vacio revisalos otra vez</ngb-alert>
+            <ngb-alert id="tres" type="success" (close)="cerrar('tres')">Se realizó el registro correctamente</ngb-alert>
+            <form (ngSubmit)="newproductoProveedor(productoProveedor.value)" [formGroup]="productoProveedor">
+                <h3>Agrega producto a proveedor</h3>
+                <label for="exampleInputEmail1">Buscar proveedor por nombre</label>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" formControlName="busquedaProveedor">
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-info" (click)="buscarProveedor(productoProveedor.value.busquedaProveedor)">Buscar Proveedor</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="proveedores">
+                    <div class="col">
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="id_proveedor" (change)='onProveedorSelect(productoProveedor.value.id_proveedor, productoProveedor.value.id_producto)'>
+                            <option *ngFor="let proveedor of proveedores" value="{{proveedor.id}}" >
+                                {{proveedor.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <label for="exampleInputEmail1">Buscar producto por nombre</label>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" formControlName="busquedaProducto">
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-info" (click)="buscarProducto(productoProveedor.value.busquedaProducto)">Buscar Producto</button>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="productos">
+                    <div class="col">
+                        <select class="form-control" id="exampleFormControlSelect1" formControlName="id_producto" (change)='onProductoSelect(productoProveedor.value.id_proveedor, productoProveedor.value.id_producto)'>
+                            <option *ngFor="let producto of productos" value="{{producto.id}}" >
+                                {{producto.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputPassword1">Precio de compra</label>
+                            <input type="number" class="form-control" formControlName="precio_compra" placeholder="Compra">
+                        </div>
+                        <div class="col">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-info btn-block" value="Agregar">
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <ngb-alert id="cuatro" type="info" (close)="cerrar('cuatro')">Se borro el producto correctamente</ngb-alert>
+            <div *ngIf="productosProveedores">
+                <h3>Productos del proveedor {{proveedor.nombre}}</h3>
+                <div class="table-responsive">
+                    <table class="table accesibilidad">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Precio de compra</th>
+                                <th scope="col">Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let productoProveedor of productosProveedores">
+                                <td>{{productoProveedor.nombre}}</td>
+                                <td><img style="width: 8rem;" [src]="productoProveedor.imagen"></td>
+                                <td>$ {{productoProveedor.precio_compra}}</td>
+                                <td>
+                                    <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                        <button type="button" class="btn btn-secondary" (click)="deleteProducto(productoProveedor.id)"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

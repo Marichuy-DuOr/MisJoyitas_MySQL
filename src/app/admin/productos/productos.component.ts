@@ -22,7 +22,7 @@ export class ProductosComponent implements OnInit {
     tipo: new FormControl('', Validators.required),
     minimo: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     material: new FormControl('', Validators.required),
-    precio_venta: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
+    precio_venta: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')])
   });
 
   constructor( private mysqlService: MysqlService ) {

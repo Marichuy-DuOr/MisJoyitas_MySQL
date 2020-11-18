@@ -1,0 +1,61 @@
+<div class="container mt-5 pt-5">
+    <h3 class="top">Compras realizadas</h3>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let compra of compras">
+                    <th>{{compra.proveedor}}</th>
+                    <th>{{compra.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</th>
+                    <th>$ {{compra.total}}</th>
+                    <td>
+                        <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal" (click)="open(compra.id)"><i class="far fa-list-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles de la compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let producto of productoCompras">
+                                <th>{{producto.nombre}}</th>
+                                <th><img src="{{producto.imagen}}" height="100px"></th>
+                                <th>{{producto.cantidad}}</th>
+                                <th>${{producto.precio}}</th>
+                                <th>${{producto.total}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
