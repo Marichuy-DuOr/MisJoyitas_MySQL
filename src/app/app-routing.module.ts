@@ -18,6 +18,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
+import { PagoComponent } from './pago/pago.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
 import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: 'joya/:id', component: JoyaComponent, canActivate: [CanGuard]},
   {path: 'perfil-usuario', component: PerfilUsuarioComponent, canActivate: [CanGuard]},
   {path: 'contacto', component: ContactoComponent},
-  {path: 'carrito', component: CarritoComponent},
+  {path: 'carro', component: CarritoComponent},
+  {path: 'pagar', component: PagoComponent},
   {path: 'buscador', component: BuscadorComponent},
   {path: 'wiki', component: WikiComponent},
   {path: 'guianillos', component: GuiaAnillosComponent},

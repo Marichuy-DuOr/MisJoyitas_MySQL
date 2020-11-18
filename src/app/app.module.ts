@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './admin/productos/productos.component';
 import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
+import { PagoComponent } from './pago/pago.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
 import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
@@ -68,7 +69,9 @@ import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-comp
     ProveedoresComponent,
     PreciosProveedoresComponent,
     ComprasComponent,
-    ConsultaComprasComponent
+    ConsultaComprasComponent,
+    PagoComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,

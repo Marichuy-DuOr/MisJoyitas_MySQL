@@ -1,19 +1,44 @@
-<div class="container">
-    <div class="row filtrar">
-      <div class="col">
-        <p class="titulo-joyas">Joyas</p>
+<div class="container" *ngIf="productos; else loading">
+  <div class="row filtrar">
+    <div class="col">
+      <p class="titulo-joyas">{{tp}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 text-center">
+      <ngb-alert style="display: none;" id="uno" type="success" (close)="cerrar('uno')">
+        <strong>Se agregó al carrito</strong>
+      </ngb-alert>
+      <ngb-alert style="display: none;" id="dos" type="danger" (close)="cerrar('dos')">
+        <strong>No hay existencias suficientes</strong>
+      </ngb-alert>
+    </div> 
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card-columns">
+        <div class="card text-center" style="width: 18rem;" *ngFor="let producto of productos">
+          <a [routerLink]="['/joya',producto.id]">
+            <img class="card-img-top producto" [src]="producto.imagen" alt="Card image cap">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title"><strong>{{producto.nombre}}</strong></h5>
+            <p class="card-text">${{producto.precio_venta}}.00</p>
+            <a class="btn btn-danger" (click)="alta(producto.id)">Agregar al carrito</a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row">
-        <div class="container col-xs-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card text-center" style="width: 18rem;">
-                <img class="card-img-top producto" src="../../assets/anillos.jpg" alt="Card image cap" (click)="verJoya(2)">
-                <div class="card-body">
-                  <h5 class="card-title"><strong>Nombre Producto</strong></h5>
-                  <p class="card-text">Precio</p>
-                  <a href="#" class="btn btn-danger">Agregar al carrito</a>
-                </div>
-              </div>
-        </div>
-    </div>
+    
+  </div>
 </div>
+
+<ng-template #loading>
+  <div class="row text-center mt-5 pt-5">
+    <div class="col">
+      <i class="fas fa-sync-alt fa-5x fa-spin"></i>
+    </div>
+  </div>
+</ng-template>

@@ -71,4 +71,15 @@ export class MysqlService {
   altaNoT(url: string, body: any) {
     return this.httpClient.post(url, body).toPromise();
   }
+
+  consultaTipo(url: string) {
+    const elUser = this.authSvc.userValue;
+
+    return this.httpClient.get(url, {
+      headers: new HttpHeaders().set(
+       'user_token',
+        elUser.token
+      ),
+    });
+  }
 }
