@@ -2,7 +2,7 @@
     <h1 class="top">Productos</h1>
     <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
     <ngb-alert id="dos" type="success" (close)="cerrar('dos')">El registro se hizo correctamente</ngb-alert>
-    <ngb-alert id="tres" type="info" (close)="cerrar('tres')">El registro se elimino</ngb-alert>
+    <ngb-alert id="tres" type="info" (close)="cerrar('tres')">El registro se actualizo correctamente</ngb-alert>
 
     <form (ngSubmit)="newProducto(newProductoForm.value)" [formGroup]="newProductoForm" class="row">
 
@@ -77,71 +77,92 @@
 
         </div>
     </form>
-</div>
 
-<div class="row mt-5 mx-5" *ngIf="productos; else loading">
-    <div class="col">
-        <div class="table-responsive">
-            <table class="table accesibilidad">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Material</th>
-                        <th scope="col">Precio venta</th>
-                        <th scope="col">Tipo</th>
 
-                        <th scope="col">Mínimo</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Editar/Borrar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let producto of productos">
-                        <td>{{producto.nombre}}</td>
-                        <td>{{producto.descripcion}}</td>
+    <div class="row mt-5 mx-5" *ngIf="reactivar == 1; else reactivarProd">
+        <div class="col" *ngIf="productos; else loading">
 
-                        <container-element [ngSwitch]="producto.material">
-                            <td *ngSwitchCase="0">Oro</td>
-                            <td *ngSwitchCase="1">Plata</td>
-                        </container-element>
+            <button type="button" class="btn btn-secondary mb-2" (click)="reactivarProductos()">Reactivar Productos</button>
+            <form (ngSubmit)="buscar(buscarForm.value)" [formGroup]="buscarForm" class="row mb-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <button type="button" class="btn btn-info " (click)="actualizar()">Mostrar Todos</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <ngb-alert id="cuatro" type="danger" (close)="cerrar('cuatro')" style="display: none;">El campo no ha sido llenado!!</ngb-alert>
+                    <h5>Buscar por nombre</h5>
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" formControlName="busqueda" placeholder="busqueda...">
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary btn-block" value="Buscar">
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-                        <td>$ {{producto.precio_venta}}</td>
+            <div class="table-responsive">
+                <table class="table accesibilidad">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Material</th>
+                            <th scope="col">Precio de venta</th>
+                            <th scope="col">Tipo</th>
 
-                        <container-element [ngSwitch]="producto.tipo">
-                            <td *ngSwitchCase="2">Anillos</td>
-                            <td *ngSwitchCase="3">Colgantes</td>
-                            <td *ngSwitchCase="4">Pulseras</td>
-                            <td *ngSwitchCase="5">Collares</td>
-                            <td *ngSwitchCase="6">Broches</td>
-                            <td *ngSwitchCase="7">Cadenas</td>
-                            <td *ngSwitchCase="8">Pendientes</td>
-                            <td *ngSwitchCase="9">Anillos de compromiso</td>
-                            <td *ngSwitchCase="10">Alianzas</td>
-                            <td *ngSwitchCase="12">Gemelos</td>
-                            <td *ngSwitchCase="13">Collares Hombre</td>
-                            <td *ngSwitchCase="14">Cadenas Hombre</td>
-                            <td *ngSwitchCase="15">Esclavas Hombre</td>
-                            <td *ngSwitchCase="16">Anillos Hombre</td>
-                            <td *ngSwitchCase="17">Pendientes Hombre</td>
-                            <td *ngSwitchCase="19">Anillos Niño</td>
-                            <td *ngSwitchCase="20">Pulseras Niño</td>
-                            <td *ngSwitchCase="21">Colgantes Niño</td>
-                            <td *ngSwitchCase="22">Pendientes Niño</td>
-                        </container-element>
+                            <th scope="col">Mínimo</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Editar/Desactivar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of productos">
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.descripcion}}</td>
 
-                        <td>{{producto.minimo}}</td>
-                        <td><img style="width: 8rem;" [src]="producto.imagen"></td>
-                        <td>
-                            <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                <button type="button" class="btn btn-secondary" (click)="editProducto(producto.id)"><i class="far fa-edit"></i></button>
-                                <button type="button" class="btn btn-secondary" (click)="deleteProducto(producto.id)"><i class="fas fa-trash-alt"></i></button>
-                            </div>
-                        </td>
-                    </tr>
+                            <container-element [ngSwitch]="producto.material">
+                                <td *ngSwitchCase="0">Oro</td>
+                                <td *ngSwitchCase="1">Plata</td>
+                            </container-element>
 
-                </tbody>
-            </table>
+                            <td>$ {{producto.precio_venta}}</td>
+
+                            <container-element [ngSwitch]="producto.tipo">
+                                <td *ngSwitchCase="2">Anillos</td>
+                                <td *ngSwitchCase="3">Colgantes</td>
+                                <td *ngSwitchCase="4">Pulseras</td>
+                                <td *ngSwitchCase="5">Collares</td>
+                                <td *ngSwitchCase="6">Broches</td>
+                                <td *ngSwitchCase="7">Cadenas</td>
+                                <td *ngSwitchCase="8">Pendientes</td>
+                                <td *ngSwitchCase="9">Anillos de compromiso</td>
+                                <td *ngSwitchCase="10">Alianzas</td>
+                                <td *ngSwitchCase="12">Gemelos</td>
+                                <td *ngSwitchCase="13">Collares Hombre</td>
+                                <td *ngSwitchCase="14">Cadenas Hombre</td>
+                                <td *ngSwitchCase="15">Esclavas Hombre</td>
+                                <td *ngSwitchCase="16">Anillos Hombre</td>
+                                <td *ngSwitchCase="17">Pendientes Hombre</td>
+                                <td *ngSwitchCase="19">Anillos Niño</td>
+                                <td *ngSwitchCase="20">Pulseras Niño</td>
+                                <td *ngSwitchCase="21">Colgantes Niño</td>
+                                <td *ngSwitchCase="22">Pendientes Niño</td>
+                            </container-element>
+
+                            <td>{{producto.minimo}}</td>
+                            <td><img style="width: 8rem;" [src]="producto.imagen"></td>
+                            <td>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-secondary" (click)="editProducto(producto.id)"><i class="far fa-edit"></i></button>
+                                    <button type="button" class="btn btn-secondary" (click)="deleteProducto(producto.id, 0)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -150,6 +171,48 @@
     <div class="row text-center mt-5 pt-5">
         <div class="col">
             <i class="fas fa-sync-alt fa-5x fa-spin"></i>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #reactivarProd>
+    <div class="row mt-5 mx-5">
+        <div class="col">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <button type="button" class="btn btn-secondary" (click)="reactivarProductos()">Regresar</button>
+            </div>
+
+            <div class="table-responsive" *ngIf="inactivos.length > 0; else noInactivos">
+                <table class="table accesibilidad">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Reactivar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let inactivo of inactivos">
+                            <td>{{inactivo.nombre}}</td>
+                            <td><img style="width: 8rem;" [src]="inactivo.imagen"></td>
+                            <td>
+                                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                    <button type="button" class="btn btn-secondary" (click)="deleteProducto(inactivo.id,1)"><i class="fas fa-trash-restore"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noInactivos>
+    <div class="row text-center mt-5 pt-5">
+        <div class="col">
+            <ngb-alert id="cinco" type="info" (close)="cerrar('cinco')">No se encontraron productos inactivos</ngb-alert>
         </div>
     </div>
 </ng-template>

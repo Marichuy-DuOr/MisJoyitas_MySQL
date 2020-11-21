@@ -35,6 +35,11 @@ import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.co
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PagoComponent } from './pago/pago.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
+import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
+import { ComprasComponent } from './admin/compras/compras.component';
+import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
+import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +66,14 @@ import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.componen
     ProductosComponent,
     OpcionesAdminComponent,
     CambiarRolesComponent,
+    PerfilUsuarioComponent,
+    ProveedoresComponent,
+    PreciosProveedoresComponent,
+    ComprasComponent,
+    ConsultaComprasComponent,
     PagoComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    ReportesComprasComponent
   ],
   imports: [
     BrowserModule,

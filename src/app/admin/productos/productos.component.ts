@@ -11,6 +11,9 @@ import { environment } from '../../../environments/environment';
 export class ProductosComponent implements OnInit {
 
   public productos = [];
+  public inactivos = [];
+
+  public reactivar = 1;
 
   public tuplaId = null;
   public currentStatus = 1;
@@ -22,7 +25,11 @@ export class ProductosComponent implements OnInit {
     tipo: new FormControl('', Validators.required),
     minimo: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     material: new FormControl('', Validators.required),
-    precio_venta: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
+    precio_venta: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')])
+  });
+
+  public buscarForm = new FormGroup({
+    busqueda: new FormControl('', Validators.required),
   });
 
   constructor( private mysqlService: MysqlService ) {
@@ -36,6 +43,9 @@ export class ProductosComponent implements OnInit {
       material: '',
       precio_venta: ''
     });
+    this.buscarForm.setValue({
+      busqueda: '',
+    });
   }
 
   ngOnInit(): void {
@@ -43,6 +53,7 @@ export class ProductosComponent implements OnInit {
     document.getElementById('dos').style.display = 'none';
     document.getElementById('tres').style.display = 'none';
     this.actualizar();
+    this.getInactivos();
   }
 
   public actualizar() {
@@ -52,6 +63,23 @@ export class ProductosComponent implements OnInit {
         console.log(res);
         this.productos = res.array;
       });
+  }
+
+  getInactivos() {
+    this.mysqlService
+      .consulta(`${environment.API_URL}/productos-inactivos`)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.inactivos = res.array;
+      });
+  }
+
+  reactivarProductos() {
+    if (this.reactivar === 1){
+      this.reactivar = 2;
+    } else {
+      this.reactivar = 1;
+    }
   }
 
   public newProducto(form, tuplaId = this.tuplaId) {
@@ -143,14 +171,32 @@ export class ProductosComponent implements OnInit {
       });
   }
 
-  public deleteProducto(tuplaId) {
-    this.mysqlService.delete(`${environment.API_URL}/producto/${tuplaId}`)
+  public deleteProducto(tuplaId, estado) {
+    const data = {
+      id: tuplaId,
+      is_active: estado
+    };
+    this.mysqlService.cambio(`${environment.API_URL}/producto-activacion`, data)
       .subscribe((res: any) => {
         console.log(res);
         this.actualizar();
+        this.getInactivos();
         document.getElementById('tres').style.display = 'block';
         setTimeout(() => document.getElementById('tres').style.display = 'none', 5000);
+    });
+  }
+
+  buscar(form) {
+    if (this.buscarForm.valid) {
+      this.mysqlService
+      .consulta(`${environment.API_URL}/producto-nombre/${form.busqueda}`)
+      .subscribe((res: any) => {
+        this.productos = res.array;
       });
+    } else {
+      document.getElementById('cuatro').style.display = 'block';
+      setTimeout(() => document.getElementById('cuatro').style.display = 'none', 5000);
+    }
   }
 
   cerrar(alerta: string) {

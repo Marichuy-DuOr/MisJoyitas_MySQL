@@ -1,0 +1,82 @@
+<div class="container mt-5 pt-5">
+    <h1>Reportes</h1>
+    <!--<div>
+        <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+    </div>-->
+
+    <div class="row mb-4">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+            <h3>Buscar por fechas</h3>
+            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">No haz llenado los campos</ngb-alert>
+            <div class="row">
+                <div class="col">
+                    <select class="form-control" [(ngModel)]="anio">
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-control" [(ngModel)]="mes">
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                      </select>
+                </div>
+                <div class="col">
+                    <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+        </div>
+        <div id="htmlData">
+            <h3>Cantidad de ventas por proveedor en {{meses[mes]}} de {{anio}}</h3>
+            <div class="row">
+                <div class="col">
+                    <table class="table accesibilidad">
+                        <thead>
+                            <tr>
+                                <th scope="col">Proveedor</th>
+                                <th scope="col">No. Compras</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dato of data">
+                                <td>{{dato.proveedor}}</td>
+                                <td>{{dato.no_compras}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div width="1600" height="1600">
+                <canvas id="bar"></canvas>
+            </div>
+        </div>
+    </div>
+</ng-template>
