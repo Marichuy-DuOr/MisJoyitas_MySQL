@@ -30,6 +30,13 @@ router.put('/producto', [], (req, res) => {
     }))
 });
 
+router.put('/producto-activacion', [], (req, res) => {
+    let body = req.body;
+    user.activarProducto(connection, body, (data => {
+        res.json(data);
+    }))
+});
+
 router.get('/producto/:id', [
     param('id').not().isEmpty().isNumeric(),
 ], (req, res) => {
@@ -63,6 +70,26 @@ router.put('/cambiar-rol', [], (req, res) => {
 router.get('/roles', (req, res) => {
     let id = req.idUsuario;
     user.getRolesUsuarios(connection, id, (data => {
+        res.json(data);
+    }))
+});
+
+router.get('/producto-nombre/:busqueda', [
+    param('busqueda').not().isEmpty().isString(),
+], (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.json({ success: false, err: JSON.stringify(errors) })
+        return
+    }
+    let busqueda = req.params.busqueda;
+    user.getProductoPorNombre(connection, busqueda, (data => {
+        res.json(data);
+    }))
+});
+
+router.get('/productos-inactivos', [], (req, res) => {
+    user.getAllProductosInactivos(connection, (data => {
         res.json(data);
     }))
 });

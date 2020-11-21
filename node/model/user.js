@@ -80,6 +80,16 @@ module.exports = {
         })
     },
 
+    getAllProductosInactivos: (connection, callback) => {
+        connection.query('select id, nombre, imagen from producto where is_active = 0', (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: results, id: null, success: true });
+        })
+    },
+
     getIdProducto: (connection, id, callback) => {
         connection.query('select * from producto where id = ' + id, (err, results) => {
             if (err) {
@@ -87,6 +97,16 @@ module.exports = {
                 return;
             }
             callback({ array: null, id: results || null, success: true });
+        })
+    },
+
+    getProductoPorNombre: (connection, busqueda, callback) => {
+        connection.query(`select * from producto where nombre LIKE '%${busqueda}%' and is_active=1 limit 20`, (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: results, id: null, success: true });
         })
     },
 
@@ -122,6 +142,16 @@ module.exports = {
 
     updateProducto: (connection, body, callback) => {
         connection.query('update producto set nombre = ?, descripcion = ?, imagen = ?, tipo = ?, minimo = ?, material = ?, precio_venta = ? WHERE id = ? ', [body.nombre, body.descripcion, body.imagen, body.tipo, body.minimo, body.material, body.precio_venta, body.id], (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: null, id: null, success: true });
+        });
+    },
+
+    activarProducto: (connection, body, callback) => {
+        connection.query('update producto set is_active = ? WHERE id = ? ', [body.is_active, body.id], (err, results) => {
             if (err) {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
                 return;

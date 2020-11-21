@@ -24,6 +24,7 @@ import { ProveedoresComponent } from './admin/proveedores/proveedores.component'
 import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
 import { ComprasComponent } from './admin/compras/compras.component';
 import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
+import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path: 'cambiar-roles', component: CambiarRolesComponent, canActivate: [CanAdminGuard]},
   {path: 'compras', component: ComprasComponent, canActivate: [CanAdminGuard]},
   {path: 'consulta-compras', component: ConsultaComprasComponent, canActivate: [CanAdminGuard]},
+  {path: 'reportes-compras', component: ReportesComprasComponent, canActivate: [CanAdminGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},
 ];

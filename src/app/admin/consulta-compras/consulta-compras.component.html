@@ -1,28 +1,58 @@
-<div class="container mt-5 pt-5">
+<div class="container mt-5 pt-5" id="htmlData">
     <h3 class="top">Compras realizadas</h3>
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Detalles</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let compra of compras">
-                    <th>{{compra.proveedor}}</th>
-                    <th>{{compra.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</th>
-                    <th>$ {{compra.total}}</th>
-                    <td>
-                        <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal" (click)="open(compra.id)"><i class="far fa-list-alt"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <!--<div>
+        <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+    </div>-->
+
+    <form (ngSubmit)="buscar(buscarForm.value)" [formGroup]="buscarForm" class="row mb-4">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+            <h3>Buscar por fechas</h3>
+            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">No haz llenado los campos</ngb-alert>
+            <div class="row">
+                <div class="col">
+                    <input type="date" class="form-control" formControlName="fecha1">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control" formControlName="fecha2">
+                </div>
+                <div class="col">
+                    <input type="submit" class="btn btn-info btn-block" value="Buscar">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive" *ngIf="compras.length > 0; else noCompras">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let compra of compras">
+                            <th>{{compra.proveedor}}</th>
+                            <th>{{compra.fecha | date: 'dd/MM/yyyy HH:mm:ss'}}</th>
+                            <th>$ {{compra.total}}</th>
+                            <td>
+                                <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal" (click)="open(compra.id)"><i class="far fa-list-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
+<ng-template #noCompras>
+    <ngb-alert type="info" id="dos" (close)="cerrar('dos')">No se han encontrado compras en ese intervalo</ngb-alert>
+</ng-template>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

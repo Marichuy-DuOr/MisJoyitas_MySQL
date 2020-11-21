@@ -220,6 +220,14 @@ export class ComprasComponent implements OnInit {
     });
   }
 
+  actualizarMinimo() {
+    this.mysqlService
+      .consulta(`${environment.API_URL}/proveedor-producto-minimo/${this.proveedor.id}`)
+      .subscribe((res: any) => {
+        this.productosProveedores = res.array;
+    });
+  }
+
   cerrar(alerta: string) {
     document.getElementById(alerta).style.display = 'none';
   }

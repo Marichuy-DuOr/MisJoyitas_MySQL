@@ -6,6 +6,7 @@ const misrutas = require('./routes/rutas');
 const misrutasT = require('./routes/rutasToken');
 const misrutasC = require('./routes/rutasCarrito');
 const misrutasAdmin = require('./routes/rutasAdmin');
+const misrutasCompras = require('./routes/rutasCompras');
 const PORT = process.env.PORT || 3000;
 
 require('dotenv').config();
@@ -18,6 +19,7 @@ app.use('/', misrutas);
 app.use('/', misrutasT);
 app.use('/', misrutasC);
 app.use('/', misrutasAdmin);
+app.use('/', misrutasCompras);
 
 //Check connect
 connection.connect((err, res) => {

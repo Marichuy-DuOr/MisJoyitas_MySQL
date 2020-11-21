@@ -39,6 +39,7 @@ import { ProveedoresComponent } from './admin/proveedores/proveedores.component'
 import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
 import { ComprasComponent } from './admin/compras/compras.component';
 import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
+import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-comp
     ComprasComponent,
     ConsultaComprasComponent,
     PagoComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    ReportesComprasComponent
   ],
   imports: [
     BrowserModule,
