@@ -35,8 +35,12 @@
                         <h1 class="resumen">Resumen del pedido</h1>
                         <hr>
                         <div class="row ml-3">
-                            <p>Subtotal</p>
-                            <h3 class="text-right m"><strong>${{subtotal}}.00</strong></h3>
+                            <div class="col">
+                                <p>Subtotal:</p>
+                            </div>
+                            <div class="col">
+                                <h4 class="text-right mr-3"><strong>${{this.subtotal}}.00</strong></h4>
+                            </div>
                         </div>
                         <button type="button" class="btn btn-danger btn-lg btn-block mt-3" [routerLink]="[ '/pagar']">Pagar</button>   
                         <div class="row mt-3">

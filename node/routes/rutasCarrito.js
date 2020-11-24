@@ -55,7 +55,6 @@ router.get('/carrito', [], (req, res) => {
 
 router.put('/carrito', [], (req, res) => {
     let body = req.body;
-    
     user.updateCarrito(connection, body, (data => {
         res.json(data);
     }))
@@ -77,14 +76,47 @@ router.delete('/carrito/:id/:cantidad', [
     }))
 });
 
+router.post('/tarjeta', [], (req, res) => {
+    let body = req.body;
+    body.id_usuario = req.idUsuario;
+    user.createTarjeta(connection, body, (data => {
+        res.json(data);
+    }))
+});
+
 router.post('/venta', [], (req, res) => {
     let body = req.body;
+    body.id_usuario = req.idUsuario;
     user.createVenta(connection, body, (data => {
         res.json(data);
     }))
 });
 
-router.post('/producto_venta', [], (req, res) => {
+router.get('/venta/:fecha', [
+    param('fecha').not().isEmpty().isString(),
+], (req, res) => {
+    const errors = validationResult(req);
+    let params = req.params;
+    params.id_usuario = req.idUsuario;
+    params.fecha = req.params.fecha;
+    if (!errors.isEmpty()) {
+        res.json({ success: false, err: JSON.stringify(errors) })
+        return
+    }
+    user.getVenta(connection, params, (data => {
+        res.json(data);
+    }))
+});
+
+
+router.put('/producto', [], (req, res) => {
+    let body = req.body;
+    user.updateProdExistencia(connection, body, (data => {
+        res.json(data);
+    }))
+});
+
+router.post('/productoVenta', [], (req, res) => {
     let body = req.body;
     user.createProducto_Venta(connection, body, (data => {
         res.json(data);

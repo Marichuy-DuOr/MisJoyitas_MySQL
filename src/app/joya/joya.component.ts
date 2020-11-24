@@ -4,7 +4,6 @@ import { MysqlService } from '../services/mysql.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../environments/environment';
-import { CarritoService } from '../services/carrito.service';
 
 @Component({
   selector: 'app-joya',
@@ -24,8 +23,7 @@ export class JoyaComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private mysqlService: MysqlService,
-              private configAlert: NgbAlertConfig, 
-              private carritoService: CarritoService) {
+              private configAlert: NgbAlertConfig) {
                 configAlert.dismissible = true;
                 this.activatedRoute.params.subscribe( params => {
                   this.idDoc = params['id'];

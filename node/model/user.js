@@ -240,6 +240,16 @@ module.exports = {
         })
     },
 
+    createTarjeta: (connection, body, callback) => {
+        connection.query('insert into tarjetas SET  ?', body, (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: results, id: null, success: true });
+        });
+    },
+
     createVenta: (connection, body, callback) => {
         connection.query('insert into ventas SET  ?', body, (err, results) => {
             if (err) {
@@ -250,8 +260,28 @@ module.exports = {
         });
     },
 
+    getVenta: (connection, body, callback) => {
+        connection.query(`select id from ventas where id_usuario = '${body.id_usuario}' and fecha = '${body.fecha}'`, (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: null, id: results, success: true });
+        })
+    },
+
+    updateProdExistencia: (connection, body, callback) => {
+        connection.query('update producto set existencia = existencia - ? WHERE id = ? ', [body.cantidad, body.id_producto], (err, results) => {
+            if (err) {
+                callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
+                return;
+            }
+            callback({ array: null, id: null, success: true });
+        });
+    },
+
     createProducto_Venta: (connection, body, callback) => {
-        connection.query('insert into ventas SET  ?', body, (err, results) => {
+        connection.query('insert into producto_ventas SET ?', body, (err, results) => {
             if (err) {
                 callback({ array: null, id: null, success: false, err: JSON.stringify(err) });
                 return;

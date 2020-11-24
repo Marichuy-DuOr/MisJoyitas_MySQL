@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CarritoService } from '../services/carrito.service';
 import { MysqlService } from '../services/mysql.service';
 import { environment } from '../../environments/environment';
 
@@ -22,7 +21,6 @@ export class CarritoComponent implements OnInit {
   public p = [];
 
   constructor(private router: Router, 
-    private carritoService: CarritoService, 
     private mysqlService: MysqlService) {}
 
   ngOnInit(): void {

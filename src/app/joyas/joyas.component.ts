@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MysqlService } from '../services/mysql.service';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CarritoService } from '../services/carrito.service';
 
 @Component({
   selector: 'app-joyas',
@@ -19,8 +18,7 @@ export class JoyasComponent implements OnInit {
 
   constructor(private router: Router, 
     public activatedRoute: ActivatedRoute, 
-    private mysqlService: MysqlService, 
-    public carritoService: CarritoService) {
+    private mysqlService: MysqlService) {
     this.activatedRoute.params.subscribe( params => {
       this.productos = [];
       console.log(params['id']);

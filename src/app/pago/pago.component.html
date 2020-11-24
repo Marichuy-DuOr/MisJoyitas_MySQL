@@ -1,176 +1,203 @@
 <div class="container filtrar">
+    <ngb-alert style="display: none;" id="cinco" type="danger" (close)="cerrar('cinco')">
+        Se eliminaron productos de tu pedido por falta de existencias
+    </ngb-alert>
+    <ngb-alert style="display: none;" id="seis" type="danger" (close)="cerrar('seis')">
+        Se eliminaron productos de tu pedido que no estaban disponibles
+    </ngb-alert>
+    <ngb-alert style="display: none;" id="siete" type="danger" (close)="cerrar('siete')">
+        No hay existencias suficientes
+    </ngb-alert>
+    <ngb-alert style="display: none;" id="ocho" type="danger" (close)="cerrar('ocho')">
+        No has registrado ninguna tarjeta
+    </ngb-alert>
     <div class="row">
         <div class="card form__top col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card-body">
                 <div class="row mt-5">
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
                         <h3 class="subtitulo">Dirección del pedido</h3>
                         <hr>
-                        <div class="row" *ngIf="this.dir==false; else direccion">
-                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
                                 <div class="card">
                                     <div class="card-header">
-                                        Nombre Cliente
+                                        <p class="h5">
+                                            {{this.user.nombre}} {{this.user.ape_pat}} {{this.user.ape_mat}}
+                                        </p>
                                     </div>
                                     <div class="card-body">
                                         <blockquote class="blockquote mb-0">
-                                            <p>Direccion</p>
-                                            <footer class="blockquote-footer text-right">
-                                                <button type="button" class="btn btn-outline-primary"
-                                                    data-toggle="modal"
-                                                    data-target=".bd-example-modal-lg">Editar</button>
-                                            </footer>
+                                            <p class="h6">
+                                                {{this.user.telefono}}
+                                                <br>
+                                                {{this.user.calle}} {{this.user.numero}}
+                                                <br>
+                                                {{this.user.colonia}}
+                                                <br>
+                                                {{this.user.municipio}}, {{this.user.estado}}, {{this.user.cp}}
+
+
+                                            </p>
+                                            <div class="row">
+                                                <div class="text-left col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <span class="badge badge-success mt-4">Dirección
+                                                        Predeterminada</span>
+                                                </div>
+                                                <div class="text-right col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    <button type="button" class="btn btn-outline-secondary btn-sm mt-4"
+                                                        data-toggle="modal" data-target="#exampleModal">Editar</button>
+                                                </div>
+                                                <!-- Modal -->
+
+
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                                    <strong>Dirección</strong></h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form (ngSubmit)="editDirecc(editDireccionForm.value)"
+                                                                    [formGroup]="editDireccionForm">
+                                                                    <ngb-alert style="display: none;" id="uno"
+                                                                        type="danger" (close)="cerrar('uno')">Algunos de
+                                                                        los campos no
+                                                                        han sido llenados o estan incorrectos revisalos
+                                                                        otra vez</ngb-alert>
+                                                                    <ngb-alert style="display: none;" id="dos"
+                                                                        type="success" (close)="cerrar('dos')">Se
+                                                                        registraron los datos
+                                                                        correctamente</ngb-alert>
+
+                                                                    <div class="form-group form-row">
+
+                                                                        <div
+                                                                            class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-right">
+                                                                            <label class="h6"
+                                                                                for="exampleInputEmail1">Municipio</label>
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                                            <input type="text" class="form-control"
+                                                                                formControlName="busqueda"
+                                                                                placeholder="aguascalientes">
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                                            <button
+                                                                                (click)="getMunicipio(editDireccionForm.value.busqueda)"
+                                                                                class="btn btn-outline-success btn-block">Buscar</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div *ngIf="municipios" class="form-group h6">
+                                                                        <select class="form-control"
+                                                                            id="exampleFormControlSelect1"
+                                                                            formControlName="id_municipio">
+                                                                            <option *ngFor="let municipio of municipios"
+                                                                                value="{{municipio.id}}">
+                                                                                {{municipio.municipio}} ,
+                                                                                {{municipio.estado}}
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="form-group form-row h6">
+                                                                        <div class="col">
+                                                                            <label for="exampleInputEmail1"
+                                                                                class="h6">Colonia</label>
+                                                                            <input class="h6" type="text"
+                                                                                class="form-control"
+                                                                                formControlName="colonia" required>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label
+                                                                                for="exampleInputEmail1">Calle</label>
+                                                                            <input type="text" class="form-control"
+                                                                                formControlName="calle" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group form-row h6">
+                                                                        <div class="col">
+                                                                            <label
+                                                                                for="exampleInputEmail1">Número</label>
+                                                                            <input type="number" class="form-control"
+                                                                                formControlName="numero" required>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label
+                                                                                for="exampleInputEmail1">Interior</label>
+                                                                            <input type="text" class="form-control"
+                                                                                formControlName="interior">
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <label for="exampleInputEmail1">CP</label>
+                                                                            <input type="number" class="form-control"
+                                                                                formControlName="cp" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Cerrar</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-success">Actualizar
+                                                                            Dirección</button>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Fin Modal -->
+                                            </div>
                                         </blockquote>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel"><strong> Dirección </strong>
-                                            </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!--Cambiar div a form-->
-                                            <div class="needs-validation" novalidate>
-                                                <div class="form-row">
-                                                    <div class="col-md-4 mb-3">
-                                                        <input type="text" class="form-control" id="validationTooltip01"
-                                                            placeholder="Nombre" required>
-                                                        <div class="valid-tooltip">
-                                                            ¡Luce bien!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 mb-3">
-                                                        <input type="text" class="form-control" id="validationTooltip02"
-                                                            placeholder="Apellido" required>
-                                                        <div class="valid-tooltip">
-                                                            ¡Luce bien!
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 mb-3">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"
-                                                                    id="validationTooltip03">MX
-                                                                    +52</span>
-                                                            </div>
-                                                            <input type="number" class="form-control"
-                                                                id="validationTooltip03" placeholder="No. de telefono"
-                                                                aria-describedby="validationTooltipUsernamePrepend"
-                                                                required>
-                                                            <div class="invalid-tooltip">
-                                                                Porfavor escribe un número correcto.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <input type="text" class="form-control" id="validationTooltip04"
-                                                            placeholder="Calle" required>
-                                                        <div class="invalid-tooltip">
-                                                            Porfavor escribe correctamente la calle.
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <input type="number" class="form-control"
-                                                            id="validationTooltip05" placeholder="Numero ext" required>
-                                                        <div class="invalid-tooltip">
-                                                            Porfavor escribe correctamente el numero.
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 mb-3">
-                                                        <input type="number" class="form-control"
-                                                            id="validationTooltip06" placeholder="Numero Int">
-                                                        <div class="invalid-tooltip">
-                                                            Porfavor escribe correctamente el numero.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <input type="text" class="form-control" id="validationTooltip07"
-                                                            placeholder="Colonia" required>
-                                                        <div class="invalid-tooltip">
-                                                            Porfavor escribe correctamente la colonia.
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2 mb-2">
-                                                        <input type="number" class="form-control"
-                                                            id="validationTooltip08" placeholder="C.P" required>
-                                                        <div class="invalid-tooltip">
-                                                            Porfavor escribe correctamente el CP.
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                                        <select class="custom-select" required>
-                                                            <option value="">Municipio</option>
-                                                            <option value="1">Aguascalientes</option>
-                                                            <option value="2">Asientos</option>
-                                                            <option value="3">Calvillo</option>
-                                                            <option value="3">Cosío</option>
-                                                            <option value="3">Jesús María</option>
-                                                            <option value="3">Pabellón de Arteaga</option>
-                                                            <option value="3">Rincón de Romos</option>
-                                                            <option value="3">San José de Gracia</option>
-                                                            <option value="3">Tepezalá</option>
-                                                            <option value="3">El Llano</option>
-                                                            <option value="3">San Francisco de los Romo</option>
-                                                        </select>
-                                                        <div class="invalid-feedback">Elige un municipio</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-success">Guardar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                         <h3 class="subtitulo mt-5">Datos de tarjeta</h3>
                         <hr>
-                        <div class="needs-validation" novalidate>
+                        <form (ngSubmit)="newTarjeta(newTarjetaForm.value)" [formGroup]="newTarjetaForm">
+                            <ngb-alert style="display: none;" id="tres" type="danger" (close)="cerrar('tres')">No
+                                llenaste correctamente los campos
+                            </ngb-alert>
+                            <ngb-alert style="display: none;" id="cuatro" type="success" (close)="cerrar('cuatro')">Se
+                                registraron los datos correctamente
+                            </ngb-alert>
                             <div class="form-row">
-                                <div class="col-md-8 mb-8">
-                                    <input type="number" class="form-control" id="validationTooltip01"
+                                <div class="col-md-12 mb-12">
+                                    <input type="text" class="form-control" formControlName="tarjeta"
                                         placeholder="Numero de la tarjeta" required>
-                                    <div class="valid-tooltip">
-                                        ¡Luce bien!
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label for="validationTooltip02">Nombre del titular de la tarjeta</label>
-                                    <input type="text" class="form-control" id="validationTooltip02"
+                                    <input type="text" class="form-control" formControlName="nombre"
                                         placeholder="Nombre" required>
-                                    <div class="valid-tooltip">
-                                        ¡Luce bien!
-                                    </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-6">
                                     <label for="validationTooltip03"><br></label>
-                                    <input type="text" class="form-control" id="validationTooltip03"
+                                    <input type="text" class="form-control" formControlName="apellidos"
                                         placeholder="Apellido" required>
-                                    <div class="valid-tooltip">
-                                        ¡Luce bien!
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                                <div class="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <label for="validationTooltip04">Vencimiento</label>
-                                    <select class="custom-select" required>
+                                    <select class="custom-select" formControlName="mes" required>
                                         <option value="">MM</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -185,37 +212,65 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
-                                    <div class="invalid-feedback">Elige un mes</div>
                                 </div>
-                                <div class="form-group col-xs-6 col-sm-6 col-md-2 col-lg-2">
+                                <div class="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                     <label for="validationTooltip05">*</label>
-                                    <select class="custom-select" required>
+                                    <select class="custom-select" formControlName="anio" required>
                                         <option value="">AA</option>
                                         <option value="2020">2020</option>
                                         <option value="2021">2021</option>
                                         <option value="2022">2022</option>
                                         <option value="2023">2023</option>
                                     </select>
-                                    <div class="invalid-feedback">Elige un año</div>
                                 </div>
-                                <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                    <label for="validationTooltip06">CSC</label>
-                                    <input type="number" class="form-control" id="validationTooltip06"
+                                <div class="form-group col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <label for="validationTooltip06">CVC</label>
+                                    <input type="text" class="form-control" formControlName="cvc"
                                         placeholder="3 digitos" required>
                                 </div>
+                                <div class="form-group mt-4 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input type="submit" class="btn btn-info btn-block" value="Agregar">
+                                </div>
                             </div>
-                        </div>
-
-
+                        </form>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 border">
+
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 border">
                         <h1 class="resumen">Resumen del pedido</h1>
                         <hr>
                         <div class="row ml-3">
-                            <p>Subtotal</p>
-                            <h3 class="text-right m"><strong>$450.00</strong></h3>
+                            <div class="col">
+                                <p>Subtotal:</p>
+                            </div>
+                            <div class="col">
+                                <h6 class="text-right mr-3"><strong>${{this.subtotal}}.00</strong></h6>
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-danger btn-lg btn-block mt-3">Pagar</button>
+                        <div class="row ml-3">
+                            <div class="col">
+                                <p>Precio de envío:</p>
+                            </div>
+                            <div class="col">
+                                <h6 class="text-right mr-3"><strong>$150.00</strong></h6>
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="col">
+                                <p>Garantía de envío:</p>
+                            </div>
+                            <div class="col">
+                                <h6 class="text-right mr-3"><strong>$20.00</strong></h6>
+                            </div>
+                        </div>
+                        <div class="row ml-3">
+                            <div class="col">
+                                <p>Total:</p>
+                            </div>
+                            <div class="col">
+                                <h4 class="text-right mr-3"><strong>${{this.total}}.00</strong></h4>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-danger btn-lg btn-block mt-3" (click)="altaVenta()">Pagar</button>
                     </div>
                 </div>
             </div>
@@ -223,116 +278,10 @@
     </div>
 </div>
 
-<ng-template #direccion>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target=".bd-example-modal-lg">
-        + Añadir Dirección
-    </button>
-    <!-- Modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong> Dirección </strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="needs-validation" novalidate>
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip01" placeholder="Nombre"
-                                    required>
-                                <div class="valid-tooltip">
-                                    ¡Luce bien!
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip02" placeholder="Apellido"
-                                    required>
-                                <div class="valid-tooltip">
-                                    ¡Luce bien!
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="validationTooltip03">MX
-                                            +52</span>
-                                    </div>
-                                    <input type="number" class="form-control" id="validationTooltip03"
-                                        placeholder="No. de telefono"
-                                        aria-describedby="validationTooltipUsernamePrepend" required>
-                                    <div class="invalid-tooltip">
-                                        Porfavor escribe un número correcto.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip04" placeholder="Calle"
-                                    required>
-                                <div class="invalid-tooltip">
-                                    Porfavor escribe correctamente la calle.
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <input type="number" class="form-control" id="validationTooltip05"
-                                    placeholder="Numero ext" required>
-                                <div class="invalid-tooltip">
-                                    Porfavor escribe correctamente el numero.
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <input type="number" class="form-control" id="validationTooltip06"
-                                    placeholder="Numero Int">
-                                <div class="invalid-tooltip">
-                                    Porfavor escribe correctamente el numero.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" id="validationTooltip07" placeholder="Colonia"
-                                    required>
-                                <div class="invalid-tooltip">
-                                    Porfavor escribe correctamente la colonia.
-                                </div>
-                            </div>
-                            <div class="col-md-2 mb-2">
-                                <input type="number" class="form-control" id="validationTooltip08" placeholder="C.P"
-                                    required>
-                                <div class="invalid-tooltip">
-                                    Porfavor escribe correctamente el CP.
-                                </div>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <select class="custom-select" required>
-                                    <option value="">Municipio</option>
-                                    <option value="1">Aguascalientes</option>
-                                    <option value="2">Asientos</option>
-                                    <option value="3">Calvillo</option>
-                                    <option value="3">Cosío</option>
-                                    <option value="3">Jesús María</option>
-                                    <option value="3">Pabellón de Arteaga</option>
-                                    <option value="3">Rincón de Romos</option>
-                                    <option value="3">San José de Gracia</option>
-                                    <option value="3">Tepezalá</option>
-                                    <option value="3">El Llano</option>
-                                    <option value="3">San Francisco de los Romo</option>
-                                </select>
-                                <div class="invalid-feedback">Elige un municipio</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Guardar</button>
-                </div>
-            </div>
+<ng-template #loading>
+    <div class="row text-center mt-5 pt-5">
+        <div class="col">
+            <i class="fas fa-sync-alt fa-5x fa-spin"></i>
         </div>
     </div>
 </ng-template>
