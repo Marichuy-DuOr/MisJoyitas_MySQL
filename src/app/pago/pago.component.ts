@@ -24,6 +24,7 @@ export class PagoComponent implements OnInit {
   public venta;
   public datosVenta;
   public bandera = false;
+  public tarjeta;
 
   public editDireccionForm = new FormGroup({
     colonia: new FormControl('', Validators.required),
@@ -162,12 +163,8 @@ export class PagoComponent implements OnInit {
               cvc: form.cvc
           };
           console.log(data);
-          this.mysqlService.alta(`${environment.API_URL}/tarjeta`, data)
-          .then((laData) => {
-          document.getElementById('cuatro').style.display = 'block';
-          setTimeout(() => document.getElementById('cuatro').style.display = 'none', 5000);
-          this.bandera = true;
-        });
+          this.tarjeta = form.tarjeta;
+          this.bandera=true;
         }else{
           document.getElementById('tres').style.display = 'block';
           setTimeout(() => document.getElementById('tres').style.display = 'none', 5000);
@@ -208,9 +205,9 @@ export class PagoComponent implements OnInit {
         this.fecha_venta();
 
         const dataVenta: Venta = {
-          id_tarjetas: "1",
           total: this.total.toString(),
-          fecha: this.fecha.toString()
+          fecha: this.fecha.toString(),
+          num_tarjeta: this.tarjeta.toString()
         };
 
         this.actualizar();
@@ -283,9 +280,9 @@ export class PagoComponent implements OnInit {
 }
 
 interface Venta {
-  id_tarjetas: string;
   total: string;
   fecha: string;
+  num_tarjeta: string;
 }
 
 interface DatosVenta {
