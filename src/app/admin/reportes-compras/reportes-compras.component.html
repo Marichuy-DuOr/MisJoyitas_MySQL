@@ -1,46 +1,53 @@
-<div class="container mt-5 pt-5">
-    <h1>Reportes</h1>
-    <!--<div>
-        <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
-    </div>-->
+<div class="container filtrar">
+    <div class="row" >
+        
+        <div class="card form__top3 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card-body">
+                <h2 class="text-center top">Reportes de Compras</h2>
 
-    <div class="row mb-4">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="row mt-5 text-center">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            
+                        <h4>Buscar por fechas</h4>
+                        <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">No haz llenado los campos</ngb-alert>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 mt-3">
+                                <select class="form-control" [(ngModel)]="anio">
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 mt-3">
+                                <select class="form-control" [(ngModel)]="mes">
+                                    <option value="1">Enero</option>
+                                    <option value="2">Febrero</option>
+                                    <option value="3">Marzo</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Mayo</option>
+                                    <option value="6">Junio</option>
+                                    <option value="7">Julio</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Septiembre</option>
+                                    <option value="10">Octubre</option>
+                                    <option value="11">Noviembre</option>
+                                    <option value="12">Diciembre</option>
+                                  </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 mt-3">
+                                <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+                </div>
 
-            <h3>Buscar por fechas</h3>
-            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">No haz llenado los campos</ngb-alert>
-            <div class="row">
-                <div class="col">
-                    <select class="form-control" [(ngModel)]="anio">
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-control" [(ngModel)]="mes">
-                        <option value="1">Enero</option>
-                        <option value="2">Febrero</option>
-                        <option value="3">Marzo</option>
-                        <option value="4">Abril</option>
-                        <option value="5">Mayo</option>
-                        <option value="6">Junio</option>
-                        <option value="7">Julio</option>
-                        <option value="8">Agosto</option>
-                        <option value="9">Septiembre</option>
-                        <option value="10">Octubre</option>
-                        <option value="11">Noviembre</option>
-                        <option value="12">Diciembre</option>
-                      </select>
-                </div>
-                <div class="col">
-                    <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
-                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+</div> 
 
 <ng-template #content let-modal>
     <div class="modal-header">
@@ -57,7 +64,7 @@
             <h3>Cantidad de ventas por proveedor en {{meses[mes]}} de {{anio}}</h3>
             <div class="row">
                 <div class="col">
-                    <table class="table accesibilidad">
+                    <table class="table table-hover table-striped text-center">
                         <thead>
                             <tr>
                                 <th scope="col">Proveedor</th>

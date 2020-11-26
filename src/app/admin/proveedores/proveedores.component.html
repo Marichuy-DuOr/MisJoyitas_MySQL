@@ -1,106 +1,120 @@
-<div class="container mt-5 pt-5">
-    <h1 class="top">Proveedores</h1>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h4>Agregar proveedores</h4>
-            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
-            <ngb-alert id="dos" type="success" (close)="cerrar('dos')">El registro se hizo correctamente</ngb-alert>
-            <form (ngSubmit)="newProveedor(newProveedorForm.value)" [formGroup]="newProveedorForm">
+<div class="container filtrar">
+    <div class="row" >
+        
+        <div class="card form__top3 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card-body">
+                <h2 class="text-center top">Proveedores</h2>
 
+                <div class="row mt-4">
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" formControlName="nombre">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Dirección email</label>
-                    <input type="email" class="form-control" formControlName="correo" placeholder="fantasia@hotmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="tel" class="form-control" formControlName="telefono" placeholder="4491234567" required>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-info btn-block" value="Agregar">
-                </div>
-
-
-
-            </form>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h4>Proveedores inactivos</h4>
-            <ngb-alert id="tres" type="info" (close)="cerrar('tres')">El registro seactualizó correctamente</ngb-alert>
-            <button type="button" class="btn btn-secondary" (click)="getInactivos()">Reactivar proveedores inactivos</button>
-            <table class="table" *ngIf="inactivos">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Reactivar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let proveedor of inactivos">
-                        <td>{{proveedor.nombre}}</td>
-                        <td>
-                            <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                <button type="button" class="btn btn-secondary" (click)="deleteProveedor(proveedor.id,1)"><i class="fas fa-trash-restore"></i></button>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
+                        <ngb-alert id="dos" type="success" (close)="cerrar('dos')">El registro se hizo correctamente</ngb-alert>
+                        <form (ngSubmit)="newProveedor(newProveedorForm.value)" [formGroup]="newProveedorForm">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nombre</label>
+                                <input type="text" class="form-control" formControlName="nombre">
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dirección email</label>
+                                <input type="email" class="form-control" formControlName="correo" placeholder="fantasia@hotmail.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Teléfono</label>
+                                <input type="tel" class="form-control" formControlName="telefono" placeholder="4491234567" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-block" value="Agregar">
+                            </div>
+                        </form>
+                    </div>
 
-    <div class="row mt-5 mx-5">
-
-        <div class="col">
-            <ngb-alert id="cuatro" type="danger" (close)="cerrar('cuatro')">El campo no ha sido llenado!!</ngb-alert>
-            <form (ngSubmit)="buscar(buscarForm.value)" [formGroup]="buscarForm" class="row mb-4">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <button type="button" class="btn btn-secondary" (click)="actualizar()">Mostrar Todos</button>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <label for="exampleInputEmail1">Buscar por nombre</label>
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="form-control" formControlName="busqueda">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <h4 class="text-center"><strong>Inactivos</strong></h4>
+                        <ngb-alert id="tres" type="info" (close)="cerrar('tres')">El registro se actualizó correctamente</ngb-alert>
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-outline-warning mt-3 text-right" (click)="getInactivos()">Reactivar proveedores inactivos</button>
+                            </div>
                         </div>
-                        <div class="col">
-                            <input type="submit" class="btn btn-info btn-block" value="Buscar">
+                        
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped table-sm text-center" *ngIf="inactivos">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Reactivar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let proveedor of inactivos">
+                                        <td>{{proveedor.nombre}}</td>
+                                        <td>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-secondary" (click)="deleteProveedor(proveedor.id,1)"><i class="fas fa-trash-restore"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+
                 </div>
-            </form>
-            <div class="table-responsive" *ngIf="proveedores; else loading">
-                <table class="table accesibilidad">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Editar/Desactivar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let proveedor of proveedores">
-                            <td>{{proveedor.nombre}}</td>
-                            <td>{{proveedor.correo}}</td>
-                            <td>{{proveedor.telefono}}</td>
-                            <td>
-                                <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                    <button type="button" class="btn btn-secondary" (click)="editProveedor(proveedor)"><i class="far fa-edit"></i></button>
-                                    <button type="button" class="btn btn-secondary" (click)="deleteProveedor(proveedor.id,0)"><i class="fas fa-trash-alt"></i></button>
+
+                <div class="row mt-5">
+                    <div class="col">
+                        <ngb-alert id="cuatro" type="danger" (close)="cerrar('cuatro')">El campo no ha sido llenado!!</ngb-alert>
+                        <form (ngSubmit)="buscar(buscarForm.value)" [formGroup]="buscarForm" class="row mb-4">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-4">
+                                <button type="button" class="btn btn-outline-info" (click)="actualizar()">Mostrar Todos</button>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <label for="exampleInputEmail1">Buscar por nombre</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" formControlName="busqueda">
+                                    </div>
+                                    <div class="col">
+                                        <input type="submit" class="btn btn-primary btn-block" value="Buscar">
+                                    </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </form>
+                        <div class="table-responsive" *ngIf="proveedores; else loading">
+                            <table class="table table-hover table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Teléfono</th>
+                                        <th scope="col">Editar/Desactivar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let proveedor of proveedores">
+                                        <td>{{proveedor.nombre}}</td>
+                                        <td>{{proveedor.correo}}</td>
+                                        <td>{{proveedor.telefono}}</td>
+                                        <td>
+                                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                                <button type="button" class="btn btn-secondary" (click)="editProveedor(proveedor)"><i class="far fa-edit"></i></button>
+                                                <button type="button" class="btn btn-secondary" (click)="deleteProveedor(proveedor.id,0)"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </div>
-    </div>
+    </div> 
 </div>
 
 <ng-template #loading>

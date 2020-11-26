@@ -1,52 +1,63 @@
-<div class="container mt-5 pt-5">
+<div class="container filtrar">
     <div class="row">
-        <div class="col-6">
-            <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Selecciona primero algun usuario.</ngb-alert>
-            <ngb-alert id="dos" type="success" (close)="cerrar('dos')">Se cambio el rol correctamente</ngb-alert>
-            <h1 class="top">Usuarios</h1>
-            <form (ngSubmit)="newUser(newUserForm.value)" [formGroup]="newUserForm">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="text" class="form-control" formControlName="correo" readonly>
-                </div>
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Rol</label>
-                    <select class="form-control" id="exampleFormControlSelect1" formControlName="rol">
-                        <option>ADMIN</option>
-                        <option>CLIENT</option>
-                    </select>
-                </div>
+        <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Selecciona primero algun usuario.</ngb-alert>
+        <ngb-alert id="dos" type="success" (close)="cerrar('dos')">Se cambio el rol correctamente</ngb-alert>
+        
+        <div class="card form__top3 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="card-body">
+                <h2 class="text-center top">Usuarios</h2>
 
-                <div class="form-group">
-                    <input type="submit" class="btn btn-info btn-block" value="Cambiar">
-                </div>
-            </form>
-        </div>
-
-        <div class="col pos mb-5">
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col" class="accesibilidad">Correo</th>
-                        <th scope="col" class="accesibilidad">Rol</th>
-                        <th scope="col" class="accesibilidad">Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let user of users">
-                        <td>{{user.correo}}</td>
-                        <td>{{user.rol}}</td>
-                        <td>
-                            <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                <button type="button" class="btn btn-secondary" (click)="editUser(user)">Editar</button>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                        <form (ngSubmit)="newUser(newUserForm.value)" [formGroup]="newUserForm">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" class="form-control" formControlName="correo" readonly>
                             </div>
-                        </td>
-                    </tr>
+            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Rol</label>
+                                <select class="form-control" id="exampleFormControlSelect1" formControlName="rol">
+                                    <option>ADMIN</option>
+                                    <option>CLIENT</option>
+                                </select>
+                            </div>
+            
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-success btn-block" value="Cambiar">
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 ml-lg-5 mt-4">
+                        <table class="table table-hover table-striped table-sm text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.correo}}</td>
+                                    <td>{{user.rol}}</td>
+                                    <td>
+                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                            <button type="button" class="btn btn-outline-secondary" (click)="editUser(user)"><i class="far fa-edit"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                
+            </div>
 
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
+</div> 

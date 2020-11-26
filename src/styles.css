@@ -334,6 +334,13 @@ footer {
 	margin-bottom: 1rem;
 }
 
+.form__top3 {
+	width: 100%;
+	padding: 2rem 0 1rem;
+	border-top: solid .4rem#b4040a;
+	margin-bottom: 1rem;
+}
+
 /* --- Carrito--- */
 .c-v{
     display: flex;

@@ -16,7 +16,6 @@ import { ForgotPasswordComponent } from './authentication/forgot-password/forgot
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ProductosComponent } from './admin/productos/productos.component';
-import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PagoComponent } from './pago/pago.component';
 import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
@@ -49,7 +48,6 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'opciones-admin', component: OpcionesAdminComponent, canActivate: [CanAdminGuard]},
   {path: 'productos', component: ProductosComponent, canActivate: [CanAdminGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [CanAdminGuard]},
   {path: 'precios-proveedores', component: PreciosProveedoresComponent, canActivate: [CanAdminGuard]},

@@ -31,7 +31,6 @@ import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosComponent } from './admin/productos/productos.component';
-import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PagoComponent } from './pago/pago.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
@@ -65,7 +64,6 @@ import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.co
     RegisterComponent,
     ForgotPasswordComponent,
     ProductosComponent,
-    OpcionesAdminComponent,
     CambiarRolesComponent,
     PerfilUsuarioComponent,
     ProveedoresComponent,
