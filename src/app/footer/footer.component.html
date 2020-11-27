@@ -1,4 +1,4 @@
-<footer class="container-fluid border-top mt-5">
+<footer class="container-fluid border-top mt-5" *ngIf="(user$ | async)?.rol != 'admin'">
     <!-- Redes Sociales -->
     <div class="container social text-center ">
         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -85,4 +85,16 @@
     </div>
     <!-- Fin Información Footer -->
 
+</footer>
+
+<footer class="container-fluid border-top mt-5" *ngIf="(user$ | async)?.rol === 'admin'">
+    <div class="row ">
+        <div class="col footer-copyright text-center py-3">
+            <p class="h6">
+                <i class="far fa-copyright"></i>
+                <small>  2020 Mis Joyitas</small>
+            
+            </p>
+        </div>
+    </div>
 </footer>

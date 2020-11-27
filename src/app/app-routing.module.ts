@@ -16,7 +16,6 @@ import { ForgotPasswordComponent } from './authentication/forgot-password/forgot
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ProductosComponent } from './admin/productos/productos.component';
-import { OpcionesAdminComponent } from './admin/opciones-admin/opciones-admin.component';
 import { CambiarRolesComponent } from './admin/cambiar-roles/cambiar-roles.component';
 import { PagoComponent } from './pago/pago.component';
 import { ProveedoresComponent } from './admin/proveedores/proveedores.component';
@@ -27,6 +26,7 @@ import { ConsultaVentasComponent } from './admin/consulta-ventas/consulta-ventas
 import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -42,6 +42,7 @@ const routes: Routes = [
   {path: 'pagar', component: PagoComponent},
   {path: 'ventaFinalizada', component: VentaFinalizadaComponent},
   {path: 'perfil-usuario', component: PerfilUsuarioComponent, canActivate: [CanGuard]},
+  {path: 'facturacion', component: FacturacionComponent},
   {path: 'buscador', component: BuscadorComponent},
   {path: 'wiki', component: WikiComponent},
   {path: 'guianillos', component: GuiaAnillosComponent},
@@ -51,7 +52,6 @@ const routes: Routes = [
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'opciones-admin', component: OpcionesAdminComponent, canActivate: [CanAdminGuard]},
   {path: 'productos', component: ProductosComponent, canActivate: [CanAdminGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [CanAdminGuard]},
   {path: 'precios-proveedores', component: PreciosProveedoresComponent, canActivate: [CanAdminGuard]},

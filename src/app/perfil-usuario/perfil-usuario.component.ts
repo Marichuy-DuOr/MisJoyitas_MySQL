@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MysqlService } from '../services/mysql.service';
 import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { GraficarService } from './../services/graficar.service';
+import { JspdfService } from './../services/jspdf.service';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -15,6 +18,11 @@ export class PerfilUsuarioComponent implements OnInit {
   public estado;
 
   public municipios;
+
+  public data;
+
+  public ejeX = [];
+  public ejeY = [];
 
   public editUserForm = new FormGroup({
     nombre: new FormControl('', Validators.required),
@@ -33,7 +41,11 @@ export class PerfilUsuarioComponent implements OnInit {
     busqueda: new FormControl(Validators.nullValidator)
   });
 
-  constructor(private mysqlService: MysqlService, private configAlert: NgbAlertConfig) {
+  constructor(private mysqlService: MysqlService,
+     private configAlert: NgbAlertConfig,
+     private modalService: NgbModal, // para abrir el modal desde el ts
+    private graficarService: GraficarService, // genera la gráfica
+    private jspdfService: JspdfService) {
     this.estado = '1';
   }
 
@@ -137,6 +149,39 @@ export class PerfilUsuarioComponent implements OnInit {
       .subscribe((res: any) => {
         this.municipios = res.array;
       });
+  }
+
+  downloadPDF() {
+    this.jspdfService.downloadPDF('htmlData');
+  }
+
+  open(content) {
+      this.ejeX = [];
+      this.ejeY = []; // quita los datos anteriores en caso de haberlos
+
+      this.modalService.open(content, { size: 'lg' }); // abre el modal y define que tamaño va a tener
+      this.mysqlService
+      .consulta(`${environment.API_URL}/reporte-compras1/${11}/${2020}`)
+      .subscribe((res: any) => {
+        this.data = res.array;
+        res.array.map(o => {
+          this.ejeX.push(o.proveedor);
+          this.ejeY.push(o.no_compras);
+        });
+        // crea la grafica, debe ir despues de abrir el modal
+        this.graficarService.create(this.ejeX, this.ejeY, 'bar', 'bar', 'Reporte mensual de compras por proveedor');
+      });
+    
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   cerrar(alerta: string) {

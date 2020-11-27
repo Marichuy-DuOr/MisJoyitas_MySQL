@@ -9,7 +9,8 @@
     </a>
 
     <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" *ngIf="(user$ | async)?.rol != 'admin'">
+
 
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['home']">Inicio</a>
@@ -81,15 +82,42 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['about']">Acerca de</a>
             </li>
-
-            <li class="nav-item" routerLinkActive="active" *ngIf="(user$ | async)?.rol ==='admin' ">
-                <a class="nav-link" [routerLink]="['opciones-admin']">Opciones de Administrador</a>
-            </li>
-
         </ul>
-        <div class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Joya.." #buscartexto (keyup.enter)=buscarJoya(buscartexto.value) />
-            <button (click)="buscarJoya(buscartexto.value)" class="btn btn-outline-success my-2 my-sm-0" type="button">Buscar</button>
+
+        <ul class="navbar-nav mr-auto" *ngIf="(user$ | async)?.rol === 'admin'">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/productos']">Productos</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/cambiar-roles']">Usuarios</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Proveedores
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/proveedores']">Administrar proveedores</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/precios-proveedores']">Registrar producto-proveedor</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Compras
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/compras']">Registrar compra</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/consulta-compras']">Compras realizadas</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/reportes-compras']">Reportes</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0" *ngIf="(user$ | async)?.rol != 'admin'">
+            <input class="form-control mr-sm-2" type="text" placeholder="Buscar Joyas" aria-label="Buscar">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
         </div>
     </div>
 </nav>
