@@ -12,6 +12,8 @@ import { JspdfService } from './../../../services/jspdf.service';
 })
 export class Reporte1Component implements OnInit {
 
+  public currentDate = new Date();
+
   public mes;
   public anio;
 
@@ -37,7 +39,7 @@ export class Reporte1Component implements OnInit {
   }
 
   downloadPDF() {
-    this.jspdfService.downloadPDF('htmlData');
+    this.jspdfService.downloadPDF2('htmlData');
   }
 
   open(content) {

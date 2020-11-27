@@ -12,7 +12,8 @@ import { JspdfService } from './../../../services/jspdf.service';
 })
 export class Reporte6Component implements OnInit {
 
-  
+  public currentDate = new Date();
+
   public data;
 
   public busqueda;

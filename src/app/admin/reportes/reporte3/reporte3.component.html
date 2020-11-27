@@ -6,7 +6,7 @@
             <input type="text" class="form-control" [(ngModel)]="busqueda" placeholder="buscar proveedor">
         </div>
         <div class="col">
-            <button type="button" class="btn btn-info" (click)="buscarProveedor()">Buscar Proveedor</button>
+            <button type="button" class="btn btn-outline-primary" (click)="buscarProveedor()">Buscar Proveedor</button>
         </div>
     </div>
 
@@ -25,6 +25,7 @@
         </div>
     </div>
 </div>
+
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
@@ -33,33 +34,98 @@
       </button>
     </div>
     <div class="modal-body">
-        <div>
-            <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <button class=" btn btn-danger ml-lg-5" (click)="downloadPDF()">Download PDF</button>
+                </div>
+
+            </div>
         </div>
         <div id="htmlData3">
-            <h3>Cantidad de productos comprados por proveedor {{nombreProveedor}} según el tipo</h3>
-            <div class="row">
-                <div class="col">
-                    <table class="table accesibilidad">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let dato of data">
-                                <td>{{ejeX[dato.tipo]}}</td>
-                                <td>{{dato.cantidad}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col"></div>
+            <div class="body">
+                <header class="clearfix header">
+                    <div class="container">
+                        <figure>
+                            <img class="logo" src="../../assets/diamante.png" alt="">
+                        </figure>
+                        <div class="company-info">
+                            <h2 class="title estilo">Mis Joyitas</h2>
+                            <span class="estilo">Leopoldo Mendez 123, Santa Anita, Ags, MX</span>
+                            <span class="line estilo"></span>
+                            <a class="phone estilo">(449) 9939364</a>
+                            <span class="line estilo"></span>
+                            <a class="email estilo">misjoyitas@example.com</a>
+                        </div>
+                    </div>
+                </header>
+
+                <section>
+                    <div class="details clearfix">
+
+                        <div class="client left">
+                            <p class="name estilo">Cantidad de productos comprados por proveedor según el tipo</p>
+                            <p class="estilo">{{nombreProveedor}}</p>
+                        </div>
+                        <div class="data right">
+                            <div class="title">Reporte</div>
+                            <div class="date">
+                                Fecha de expedición: {{currentDate | date:'yyyy-MM-dd'}}<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="container">
+                                <div class="table-wrapper">
+                                    <table class="page-break page-break-before">
+                                        <tbody class="head">
+                                            <tr>
+                                                <th class="no"></th>
+                                                <th class="qty">
+                                                    <div>Tipo</div>
+                                                </th>
+                                                <th class="qty">
+                                                    <div>Cantidad</div>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                        <tbody class="body">
+                                            <tr *ngFor="let dato of data; let i = index">
+                                                <td class="no">{{i + 1 }}</td>
+                                                <td class="qty">{{ejeX[dato.tipo]}}</td>
+                                                <td class="qty">{{dato.cantidad}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container">
+                        <div class="thanks"></div>
+                        <div class="end"></div>
+                    </div>
+                </footer>
             </div>
             <div width="1600" height="1600">
                 <canvas id="bar3"></canvas>
             </div>
+            <footer>
+                <div class="container">
+                    <div class="thanks"></div>
+                    <div class="end">
+                        <i class="far fa-copyright"></i>
+                        <small>  2020 Mis Joyitas</small>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </ng-template>
