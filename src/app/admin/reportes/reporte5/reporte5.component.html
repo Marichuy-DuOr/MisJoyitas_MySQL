@@ -1,0 +1,120 @@
+<div class="mb-4">
+    <h5>Reporte de productos mas comprados</h5>
+    <ngb-alert id="cinco" type="danger" (close)="cerrar('cinco')">No haz llenado los campos</ngb-alert>
+    <div class="row">
+        <div class="col">
+            <input type="date" class="form-control" [(ngModel)]="fecha1">
+        </div>
+        <div class="col">
+            <input type="date" class="form-control" [(ngModel)]="fecha2">
+        </div>
+        <div class="col">
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <button class=" btn btn-danger ml-lg-5" (click)="downloadPDF()">Download PDF</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="htmlData5">
+
+            <div class="body">
+                <header class="clearfix header">
+                    <div class="container">
+                        <figure>
+                            <img class="logo" src="../../assets/diamante.png" alt="">
+                        </figure>
+                        <div class="company-info">
+                            <h2 class="title estilo">Mis Joyitas</h2>
+                            <span class="estilo">Leopoldo Mendez 123, Santa Anita, Ags, MX</span>
+                            <span class="line estilo"></span>
+                            <a class="phone estilo">(449) 9939364</a>
+                            <span class="line estilo"></span>
+                            <a class="email estilo">misjoyitas@example.com</a>
+                        </div>
+                    </div>
+                </header>
+
+                <section>
+                    <div class="details clearfix">
+
+                        <div class="client left">
+                            <p class="name estilo">Producto mas vendido</p>
+                            <p class="estilo">{{fecha1}} - {{fecha2}}</p>
+                        </div>
+                        <div class="data right">
+                            <div class="title">Reporte</div>
+                            <div class="date">
+                                Fecha de expedición: {{currentDate | date:'yyyy-MM-dd'}}<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="container">
+                                <div class="table-wrapper">
+                                    <table class="page-break page-break-before">
+                                        <tbody class="head">
+                                            <tr>
+                                                <th class="no"></th>
+                                                <th class="qty">
+                                                    <div>Producto</div>
+                                                </th>
+                                                <th class="qty">
+                                                    <div>Cantidad</div>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                        <tbody class="body">
+                                            <tr *ngFor="let dato of data; let i = index">
+                                                <td class="no">{{i + 1 }}</td>
+                                                <td class="qty">{{dato.nombre}}</td>
+                                                <td class="qty">{{dato.cantidad}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container">
+                        <div class="thanks"></div>
+                        <div class="end"></div>
+                    </div>
+                </footer>
+            </div>
+            <div width="1600" height="1600">
+                <canvas id="bar5"></canvas>
+            </div>
+            <footer>
+                <div class="container">
+                    <div class="thanks"></div>
+                    <div class="end">
+                        <i class="far fa-copyright"></i>
+                        <small>  2020 Mis Joyitas</small>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</ng-template>
