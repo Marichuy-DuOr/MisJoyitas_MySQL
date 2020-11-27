@@ -36,7 +36,7 @@ export class Reporte6Component implements OnInit {
   }
 
   downloadPDF() {
-    this.jspdfService.downloadPDF('htmlData6');
+    this.jspdfService.downloadPDF2('htmlData6');
   }
 
   buscarProveedor() {
