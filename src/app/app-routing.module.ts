@@ -25,6 +25,7 @@ import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-comp
 import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'pagar', component: PagoComponent},
   {path: 'ventaFinalizada', component: VentaFinalizadaComponent},
   {path: 'perfil-usuario', component: PerfilUsuarioComponent, canActivate: [CanGuard]},
+  {path: 'facturacion', component: FacturacionComponent},
   {path: 'buscador', component: BuscadorComponent},
   {path: 'wiki', component: WikiComponent},
   {path: 'guianillos', component: GuiaAnillosComponent},

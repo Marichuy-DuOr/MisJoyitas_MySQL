@@ -363,3 +363,302 @@ footer {
     font-family: 'Lobster';
     text-align: left;
 }
+
+/* --- Diseño PDF --- */
+.estilo	{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    color: #777777;
+}
+
+.body .container {
+    min-width: 500px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.body .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.body .left {
+    float: left;
+}
+
+.body .right {
+float: right;
+}
+
+.body .helper {
+    height: 100%;
+}
+
+.header {
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 0px 5px 0;
+}
+
+header figure {
+    float: left;
+    width: 40px;
+    margin-right: 10px;
+}
+
+header figure img {
+    height: 40px;
+}
+
+header .company-info {
+    color: #BDB9B9;
+}
+
+header .company-info .title {
+    margin-bottom: 5px;
+    color: #2A8EAC;
+    font-weight: 600;
+    font-size: 2em;
+}
+
+header .company-info .line {
+    display: inline-block;
+    height: 9px;
+    margin: 0 4px;
+    border-left: 1px solid #2A8EAC;
+}
+
+section .details {
+    min-width: 500px;
+    margin-bottom: 40px;
+    padding: 10px 35px;
+    background-color: #2A8EAC;
+    color: #ffffff;
+}
+
+section .details .client {
+    width: 50%;
+    line-height: 16px;
+}
+
+section .details .client .name {
+    font-weight: 600;
+}
+
+section .details .data {
+    width: 50%;
+    text-align: right;
+}
+
+section .details .data2 {
+    width: 100%;
+    text-align: center;
+}
+
+section .details .title {
+    margin-bottom: 15px;
+    font-size: 3em;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+section .table-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+section .table-wrapper:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 33px;
+    left: 30px;
+    width: 90%;
+    height: 100%;
+    border-top: 2px solid #BDB9B9;
+    border-left: 2px solid #BDB9B9;
+    z-index: -1;
+}
+
+section .no-break {
+    page-break-inside: avoid;
+}
+
+section table {
+    width: 100%;
+    margin-bottom: -20px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 5px 20px;
+}
+
+section table .no {
+    width: 50px;
+}
+
+section table .desc {
+    width: 55%;
+}
+
+section table .qty, section table .unit, section table .total {
+    width: 15%;
+}
+
+section table tbody.head {
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+section table tbody.head th {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+section table tbody.head th div {
+    display: inline-block;
+    padding: 7px 0;
+    width: 100%;
+    background: #BDB9B9;
+}
+
+section table tbody.head th.desc div {
+    width: 115px;
+    margin-left: -110px;
+}
+
+section table tbody.body td {
+    padding: 10px 5px;
+    background: #F3F3F3;
+    text-align: center;
+}
+
+section table tbody.body h3 {
+    margin-bottom: 5px;
+    color: #2A8EAC;
+    font-weight: 600;
+}
+
+section table tbody.body .no {
+    padding: 0px;
+    background-color: #2A8EAC;
+    color: #ffffff;
+    font-size: 1.66666666666667em;
+    font-weight: 600;
+    line-height: 50px;
+}
+
+section table tbody.body .desc {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: transparent;
+    color: #777787;
+    text-align: left;
+}
+
+section table tbody.body .total {
+    color: #2A8EAC;
+    font-weight: 600;
+}
+
+section table tbody.body tr.total td {
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    color: #777777;
+    text-align: right;
+}
+
+section table tbody.body tr.total .empty {
+    background: white;
+}
+
+section table tbody.body tr.total .total {
+    font-size: 1.18181818181818em;
+    font-weight: 600;
+    color: #2A8EAC;
+}
+
+section table.grand-total {
+    margin-top: 40px;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    border-spacing: 0px 0px;
+    margin-bottom: 40px;
+}
+
+section table.grand-total tbody td {
+    padding: 0 10px 10px;
+    background-color: #2A8EAC;
+    color: #ffffff;
+    font-weight: 400;
+    text-align: right;
+}
+
+section table.grand-total tbody td.no, section table.grand-total tbody td.desc, section table.grand-total tbody td.qty {
+    background-color: transparent;
+}
+
+section table.grand-total tbody td.total, section table.grand-total tbody td.grand-total {
+    border-right: 5px solid #ffffff;
+}
+
+section table.grand-total tbody td.grand-total {
+    padding: 0;
+    font-size: 1.16666666666667em;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+section table.grand-total tbody td.grand-total div {
+    float: right;
+    padding: 10px 5px;
+    background-color: #21BCEA;
+}
+
+section table.grand-total tbody td.grand-total div span {
+    margin-right: 5px;
+}
+
+section table.grand-total tbody tr:first-child td {
+    padding-top: 10px;
+}
+
+footer .thanks {
+    margin-bottom: 40px;
+    color: #2A8EAC;
+    font-size: 1.16666666666667em;
+    font-weight: 600;
+}
+
+footer .end {
+    padding-top: 5px;
+    border-top: 2px solid #2A8EAC;
+    text-align: center;
+}
+
+.page-break {
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear:both;
+  }
+  .page-break-before {
+    page-break-before: always;
+    page-break-inside: avoid;
+    clear:both;
+  }

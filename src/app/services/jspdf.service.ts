@@ -12,22 +12,29 @@ export class JspdfService {
   downloadPDF(id) {
     // Extraemos el
     const DATA = document.getElementById(id);
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF('p', 'mm');
     const options = {
       background: 'white',
       scale: 3
     };
     html2canvas(DATA, options).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
 
-      const img = canvas.toDataURL('image/PNG');
+      let position = 0;
 
-      // Add image Canvas to PDF
-      const bufferX = 15;
-      const bufferY = 15;
-      const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+      position = heightLeft - imgHeight;
+      doc.addPage();
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      }
       return doc;
     }).then((docResult) => {
       docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
