@@ -23,6 +23,7 @@ import { ProveedoresComponent } from './admin/proveedores/proveedores.component'
 import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios-proveedores.component';
 import { ComprasComponent } from './admin/compras/compras.component';
 import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
+import { ConsultaVentasComponent } from './admin/consulta-ventas/consulta-ventas.component';
 import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'joyas/:id', component: JoyasComponent, canActivate: [CanGuard]},
   {path: 'joya/:id', component: JoyaComponent, canActivate: [CanGuard]},
+  {path: 'buscador/:nomjoya', component: BuscadorComponent, canActivate: [CanGuard]},
   {path: 'contacto', component: ContactoComponent},
   {path: 'carro', component: CarritoComponent},
   {path: 'pagar', component: PagoComponent},
@@ -56,6 +58,7 @@ const routes: Routes = [
   {path: 'cambiar-roles', component: CambiarRolesComponent, canActivate: [CanAdminGuard]},
   {path: 'compras', component: ComprasComponent, canActivate: [CanAdminGuard]},
   {path: 'consulta-compras', component: ConsultaComprasComponent, canActivate: [CanAdminGuard]},
+  {path: 'consulta-ventas', component: ConsultaVentasComponent, canActivate: [CanAdminGuard]},
   {path: 'reportes-compras', component: ReportesComprasComponent, canActivate: [CanAdminGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},

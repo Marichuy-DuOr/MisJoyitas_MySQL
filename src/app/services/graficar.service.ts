@@ -74,4 +74,16 @@ export class GraficarService {
         array[j] = temp;
     }
   }
+
+  quitaAuxiliares(ejeX, ejeY, id, tipo, titulo) {
+    ejeX.splice( 18 , 1 );
+    ejeX.splice( 11, 1 );
+    ejeX.splice( 1, 1 );
+    ejeX.splice( 0, 1 );
+    ejeY.splice( 18 , 1 );
+    ejeY.splice( 11, 1 );
+    ejeY.splice( 1, 1 );
+    ejeY.splice( 0, 1 );
+    this.create(ejeX, ejeY, id, tipo, titulo);
+  }
 }

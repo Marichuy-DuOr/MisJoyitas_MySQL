@@ -18,4 +18,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  buscarJoya(nomjoya: string) {
+    this.router.navigate(['/buscador', nomjoya]);
+  }
+
 }

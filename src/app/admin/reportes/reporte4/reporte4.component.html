@@ -1,0 +1,105 @@
+<div class="mb-4">
+    <h5>Tipos de productos registrados</h5>
+    <div class="row">
+
+        <div class="col">Por material</div>
+
+        <div class="col">
+            <button class="btn btn-lg btn-outline-primary" (click)="open1(content)"><i class="far fa-list-alt"></i></button>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col">Por tipo</div>
+
+        <div class="col">
+            <button class="btn btn-lg btn-outline-primary" (click)="open2(content2)"><i class="far fa-list-alt"></i></button>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF('htmlData41')">Download PDF</button>
+        </div>
+        <div id="htmlData41">
+            <h3>Productos registrados en el inventario</h3>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Material</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <th scope="col">Material</th>
+                            <th scope="col">Cantidad</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let dato of data1">
+                                <td>{{ejeX1[dato.material]}}</td>
+                                <td>{{dato.cantidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div width="1600" height="1600">
+                <canvas id="bar41"></canvas>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF('htmlData42')">Download PDF</button>
+        </div>
+        <div id="htmlData42">
+            <h3>Productos registrados en el inventario</h3>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Tipo de producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Cantidad</th>
+                            </tr>
+                            <tr *ngFor="let dato of data2">
+                                <td>{{ejeX2[dato.tipo]}}</td>
+                                <td>{{dato.cantidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div width="1600" height="1600">
+                <canvas id="bar42"></canvas>
+            </div>
+        </div>
+    </div>
+</ng-template>

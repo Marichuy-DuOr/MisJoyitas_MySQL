@@ -1,0 +1,65 @@
+<div class="mb-4">
+    <h5>Reporte cantidad de productos comprados por proveedor según el tipo</h5>
+    <ngb-alert id="tres" type="danger" (close)="cerrar('tres')">No haz llenado los campos</ngb-alert>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" [(ngModel)]="busqueda" placeholder="buscar proveedor">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-info" (click)="buscarProveedor()">Buscar Proveedor</button>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="idProveedor">
+                <option *ngFor="let proveedor of proveedores" value="{{proveedor.id}}" >
+                    {{proveedor.nombre}}
+                </option>
+            </select>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <button class="btn col col-lg-4 btn-danger btn-block ml-4" (click)="downloadPDF()">Download PDF</button>
+        </div>
+        <div id="htmlData3">
+            <h3>Cantidad de productos comprados por proveedor {{nombreProveedor}} según el tipo</h3>
+            <div class="row">
+                <div class="col">
+                    <table class="table accesibilidad">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let dato of data">
+                                <td>{{ejeX[dato.tipo]}}</td>
+                                <td>{{dato.cantidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div width="1600" height="1600">
+                <canvas id="bar3"></canvas>
+            </div>
+        </div>
+    </div>
+</ng-template>
