@@ -172,6 +172,14 @@ export class PreciosProveedoresComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.onProveedorSelect(this.proveedor.id, '');
+        this.productoProveedor.setValue({
+          id: '',
+          busquedaProducto: '',
+          busquedaProveedor: '',
+          id_producto: '',
+          id_proveedor: '',
+          precio_compra: ''
+        });
         document.getElementById('cuatro').style.display = 'block';
         setTimeout(() => document.getElementById('cuatro').style.display = 'none', 5000);
       });

@@ -89,19 +89,11 @@ export class ComprasComponent implements OnInit {
           precio: this.productoCompras[i].precio_compra,
           cantidad: this.productoCompras[i].cantidad
         };
-        body3 = {
-          id_producto: this.productoCompras[i].id_producto,
-          cantidad: this.productoCompras[i].cantidad
-        };
         this.mysqlService.alta(`${environment.API_URL}/producto-compra`, body2)
         .then((laData) => {
         })
         .catch((err) => {
           console.log(err);
-        });
-
-        this.mysqlService.cambio(`${environment.API_URL}/compra`, body3)
-          .subscribe((res: any) => {
         });
       }
       this.total = 0;

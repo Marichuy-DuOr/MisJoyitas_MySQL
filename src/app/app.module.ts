@@ -40,6 +40,13 @@ import { ComprasComponent } from './admin/compras/compras.component';
 import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
 import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
+import { ConsultaVentasComponent } from './admin/consulta-ventas/consulta-ventas.component';
+import { Reporte1Component } from './admin/reportes/reporte1/reporte1.component';
+import { Reporte2Component } from './admin/reportes/reporte2/reporte2.component';
+import { Reporte3Component } from './admin/reportes/reporte3/reporte3.component';
+import { Reporte4Component } from './admin/reportes/reporte4/reporte4.component';
+import { Reporte5Component } from './admin/reportes/reporte5/reporte5.component';
+import { Reporte6Component } from './admin/reportes/reporte6/reporte6.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +80,14 @@ import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.co
     PagoComponent,
     PerfilUsuarioComponent,
     ReportesComprasComponent,
-    VentaFinalizadaComponent
+    VentaFinalizadaComponent,
+    ConsultaVentasComponent,
+    Reporte1Component,
+    Reporte2Component,
+    Reporte3Component,
+    Reporte4Component,
+    Reporte5Component,
+    Reporte6Component
   ],
   imports: [
     BrowserModule,
