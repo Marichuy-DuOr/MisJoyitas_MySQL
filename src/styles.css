@@ -651,14 +651,3 @@ footer .end {
     border-top: 2px solid #2A8EAC;
     text-align: center;
 }
-
-.page-break {
-    page-break-after: always;
-    page-break-inside: avoid;
-    clear:both;
-  }
-  .page-break-before {
-    page-break-before: always;
-    page-break-inside: avoid;
-    clear:both;
-  }
