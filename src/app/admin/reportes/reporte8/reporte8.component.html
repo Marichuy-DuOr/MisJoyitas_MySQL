@@ -1,19 +1,20 @@
 <div class="mb-4">
-    <h5>Reporte de productos mas comprados</h5>
-    <ngb-alert id="cinco" type="danger" (close)="cerrar('cinco')">No haz llenado los campos</ngb-alert>
+    <label for="exampleFormControlInput1">Ganancias por año</label>
+    <ngb-alert id="dos" type="danger" (close)="cerrar('dos')">No haz llenado los campos</ngb-alert>
     <div class="row">
         <div class="col">
-            <input type="date" class="form-control" [(ngModel)]="fecha1">
+            <select class="form-control" [(ngModel)]="anio">
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2021">2022</option>
+                </select>
         </div>
+
         <div class="col">
-            <input type="date" class="form-control" [(ngModel)]="fecha2">
-        </div>
-        <div class="col">
-            <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
+            <button class="btn btn-block btn-outline-primary" (click)="open(content)">Ver Reporte</button>
         </div>
     </div>
 </div>
-
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Reporte</h4>
@@ -32,8 +33,7 @@
 
             </div>
         </div>
-        <div id="htmlData5">
-
+        <div id="htmlData2">
             <div class="body">
                 <header class="clearfix header">
                     <div class="container">
@@ -55,8 +55,8 @@
                     <div class="details clearfix">
 
                         <div class="client left">
-                            <p class="name estilo">Producto mas comprado</p>
-                            <p class="estilo">{{fecha1}} - {{fecha2}}</p>
+                            <p class="name estilo">Ganacias por año</p>
+                            <p class="estilo">{{anio}}</p>
                         </div>
                         <div class="data right">
                             <div class="title">Reporte</div>
@@ -74,18 +74,18 @@
                                             <tr>
                                                 <th class="no"></th>
                                                 <th class="qty">
-                                                    <div>Producto</div>
+                                                    <div>Mes</div>
                                                 </th>
-                                                <th class="qty">
-                                                    <div>Cantidad</div>
+                                                <th class="unit">
+                                                    <div>Ganacia</div>
                                                 </th>
                                             </tr>
                                         </tbody>
                                         <tbody class="body">
                                             <tr *ngFor="let dato of data; let i = index">
                                                 <td class="no">{{i + 1 }}</td>
-                                                <td class="qty">{{dato.nombre}}</td>
-                                                <td class="qty">{{dato.cantidad}}</td>
+                                                <td class="qty">{{dato.mes}}</td>
+                                                <td class="unit">${{dato.suma}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -104,7 +104,7 @@
                 </footer>
             </div>
             <div width="1600" height="1600">
-                <canvas id="bar5"></canvas>
+                <canvas id="bar8"></canvas>
             </div>
             <footer>
                 <div class="container">

@@ -39,6 +39,7 @@ import { PreciosProveedoresComponent } from './admin/precios-proveedores/precios
 import { ComprasComponent } from './admin/compras/compras.component';
 import { ConsultaComprasComponent } from './admin/consulta-compras/consulta-compras.component';
 import { ReportesComprasComponent } from './admin/reportes-compras/reportes-compras.component';
+import { ReportesVentasComponent } from './admin/reportes-ventas/reportes-ventas.component';
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
 import { ConsultaVentasComponent } from './admin/consulta-ventas/consulta-ventas.component';
 import { Reporte1Component } from './admin/reportes/reporte1/reporte1.component';
@@ -47,6 +48,11 @@ import { Reporte3Component } from './admin/reportes/reporte3/reporte3.component'
 import { Reporte4Component } from './admin/reportes/reporte4/reporte4.component';
 import { Reporte5Component } from './admin/reportes/reporte5/reporte5.component';
 import { Reporte6Component } from './admin/reportes/reporte6/reporte6.component';
+import { Reporte7Component } from './admin/reportes/reporte7/reporte7.component';
+import { Reporte8Component } from './admin/reportes/reporte8/reporte8.component';
+import { Reporte9Component } from './admin/reportes/reporte9/reporte9.component';
+import { Reporte10Component } from './admin/reportes/reporte10/reporte10.component';
+import { Reporte11Component } from './admin/reportes/reporte11/reporte11.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +86,7 @@ import { Reporte6Component } from './admin/reportes/reporte6/reporte6.component'
     PagoComponent,
     PerfilUsuarioComponent,
     ReportesComprasComponent,
+    ReportesVentasComponent,
     VentaFinalizadaComponent,
     ConsultaVentasComponent,
     Reporte1Component,
@@ -87,7 +94,12 @@ import { Reporte6Component } from './admin/reportes/reporte6/reporte6.component'
     Reporte3Component,
     Reporte4Component,
     Reporte5Component,
-    Reporte6Component
+    Reporte6Component,
+    Reporte7Component,
+    Reporte8Component,
+    Reporte9Component,
+    Reporte10Component,
+    Reporte11Component
   ],
   imports: [
     BrowserModule,

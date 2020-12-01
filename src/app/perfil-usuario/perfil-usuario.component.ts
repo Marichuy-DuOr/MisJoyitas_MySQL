@@ -14,8 +14,15 @@ import { environment } from '../../environments/environment';
 })
 export class PerfilUsuarioComponent implements OnInit {
 
+  public currentDate = new Date();
   public user;
   public estado;
+  public ventas;
+  public productos;
+  public id;
+  public subt;
+  public t;
+  public envio;
 
   public municipios;
 
@@ -81,6 +88,13 @@ export class PerfilUsuarioComponent implements OnInit {
           busqueda: this.user.municipio
         });
       });
+      this.mysqlService
+      .consulta(`${environment.API_URL}/ventas`)
+      .subscribe((res: any) => {
+        this.ventas = res.array;
+        console.log(res.array);
+      });
+
   }
 
   public editUser() {
@@ -91,6 +105,40 @@ export class PerfilUsuarioComponent implements OnInit {
   }
   public regresar() {
     this.estado = '1';
+  }
+  public factura(id_ventas: number) {
+    this.estado = '4';
+
+    this.productos = [];
+    this.t = 0;
+    this.subt = 0;
+    this.envio = 170;
+
+    this.mysqlService.consultaId(`${environment.API_URL}/ventas/${id_ventas}`)
+      .subscribe((res: any) => {
+        console.log(res);
+        let cont = 1;
+        res.array.forEach((p: any) => {
+
+          this.mysqlService.consultaId(`${environment.API_URL}/producto/${p.id_producto}`)
+          .subscribe((res: any) => {
+            console.log(res.id[0]);
+            let data = {
+              n: cont,
+              nombre: res.id[0].nombre,
+              descripcion: res.id[0].descripcion,
+              cantidad: Number(p.cantidad),
+              precio: Number(p.precio),
+              tot: Number(p.precio) * Number(p.cantidad)
+            }
+            console.log(data.tot);
+            cont++;
+            this.subt = Number(this.subt) + Number(data.tot);
+            this.productos.push(data);
+          });
+        });
+        this.t = this.subt + this.envio;
+      });
   }
 
   public editUsuario(form) {
@@ -155,23 +203,15 @@ export class PerfilUsuarioComponent implements OnInit {
     this.jspdfService.downloadPDF('htmlData');
   }
 
+  
   open(content) {
-      this.ejeX = [];
-      this.ejeY = []; // quita los datos anteriores en caso de haberlos
 
       this.modalService.open(content, { size: 'lg' }); // abre el modal y define que tamaño va a tener
-      this.mysqlService
-      .consulta(`${environment.API_URL}/reporte-compras1/${11}/${2020}`)
+      
+      this.mysqlService.consultaId(`${environment.API_URL}/venta/${this.id}`)
       .subscribe((res: any) => {
-        this.data = res.array;
-        res.array.map(o => {
-          this.ejeX.push(o.proveedor);
-          this.ejeY.push(o.no_compras);
-        });
-        // crea la grafica, debe ir despues de abrir el modal
-        this.graficarService.create(this.ejeX, this.ejeY, 'bar', 'bar', 'Reporte mensual de compras por proveedor');
+        this.productos = res.array;
       });
-    
   }
 
   private getDismissReason(reason: any): string {

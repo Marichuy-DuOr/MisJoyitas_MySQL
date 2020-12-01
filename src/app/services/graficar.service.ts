@@ -76,14 +76,14 @@ export class GraficarService {
   }
 
   quitaAuxiliares(ejeX, ejeY, id, tipo, titulo) {
-    ejeX.splice( 18 , 1 );
-    ejeX.splice( 11, 1 );
-    ejeX.splice( 1, 1 );
-    ejeX.splice( 0, 1 );
-    ejeY.splice( 18 , 1 );
-    ejeY.splice( 11, 1 );
-    ejeY.splice( 1, 1 );
-    ejeY.splice( 0, 1 );
-    this.create(ejeX, ejeY, id, tipo, titulo);
+    let ejeX2 = [];
+    let ejeY2 = [];
+    for (let i = 0; i < ejeX.length; i++ ) {
+      if (i !== 0 && i !== 1 && i !== 11 && i !== 18 ) {
+        ejeX2.push(ejeX[i]);
+        ejeY2.push(ejeY[i]);
+      }
+    }
+    this.create(ejeX2, ejeY2, id, tipo, titulo);
   }
 }

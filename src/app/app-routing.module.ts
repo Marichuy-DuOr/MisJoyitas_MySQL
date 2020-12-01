@@ -27,6 +27,7 @@ import { ReportesComprasComponent } from './admin/reportes-compras/reportes-comp
 import { VentaFinalizadaComponent } from './venta-finalizada/venta-finalizada.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
+import { ReportesVentasComponent } from './admin/reportes-ventas/reportes-ventas.component';
 
 import { CanGuard } from './authentication/guards/can-guard';
 import { CanAdminGuard } from './authentication/guards/can-admin-guard';
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path: 'consulta-compras', component: ConsultaComprasComponent, canActivate: [CanAdminGuard]},
   {path: 'consulta-ventas', component: ConsultaVentasComponent, canActivate: [CanAdminGuard]},
   {path: 'reportes-compras', component: ReportesComprasComponent, canActivate: [CanAdminGuard]},
+  {path: 'reportes-ventas', component: ReportesVentasComponent, canActivate: [CanAdminGuard]},
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: '**', pathMatch: 'full', redirectTo: 'home'},
 ];

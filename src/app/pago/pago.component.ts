@@ -207,7 +207,8 @@ export class PagoComponent implements OnInit {
         const dataVenta: Venta = {
           total: this.total.toString(),
           fecha: this.fecha.toString(),
-          num_tarjeta: this.tarjeta.toString()
+          num_tarjeta: this.tarjeta.toString(), 
+          factura: '0'
         };
 
         this.actualizar();
@@ -243,17 +244,6 @@ export class PagoComponent implements OnInit {
                 });
 
                 
-                this.mysqlService.alta(`${environment.API_URL}/producto`, venta)
-                  .then((laData) => {
-                    console.log("Datos venta registrada");
-                }).catch((err) => {
-                  console.log(err);
-                });
-
-                this.mysqlService.cambio(`${environment.API_URL}/producto`, existencia)
-                  .subscribe((res: any) => {
-                    console.log("Existencia actualizada");
-                });
 
                 this.mysqlService.delete(`${environment.API_URL}/carrito/${p.id_producto}/${p.cantidad}`)
                 .subscribe((res: any) => {
@@ -283,6 +273,7 @@ interface Venta {
   total: string;
   fecha: string;
   num_tarjeta: string;
+  factura: string;
 }
 
 interface DatosVenta {

@@ -1,12 +1,12 @@
 <div class="mb-4">
-    <h5>Reporte de productos mas comprados</h5>
+    <label for="exampleFormControlInput1">Productos más vendidos</label>
     <ngb-alert id="cinco" type="danger" (close)="cerrar('cinco')">No haz llenado los campos</ngb-alert>
     <div class="row">
         <div class="col">
-            <input type="date" class="form-control" [(ngModel)]="fecha1">
+            <input type="date" class="form-control" [(ngModel)]="date1">
         </div>
         <div class="col">
-            <input type="date" class="form-control" [(ngModel)]="fecha2">
+            <input type="date" class="form-control" [(ngModel)]="date2">
         </div>
         <div class="col">
             <button class="btn btn-lg btn-outline-primary" (click)="open(content)"><i class="far fa-list-alt"></i></button>
@@ -27,7 +27,7 @@
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <button class=" btn btn-danger ml-lg-5" (click)="downloadPDF()">Download PDF</button>
+                    <button class="btn btn-danger ml-lg-5" (click)="downloadPDF()">Download PDF</button>
                 </div>
 
             </div>
@@ -55,8 +55,8 @@
                     <div class="details clearfix">
 
                         <div class="client left">
-                            <p class="name estilo">Producto mas comprado</p>
-                            <p class="estilo">{{fecha1}} - {{fecha2}}</p>
+                            <p class="name estilo">Productos más vendidos</p>
+                            <p class="estilo">{{date1}} - {{date2}}</p>
                         </div>
                         <div class="data right">
                             <div class="title">Reporte</div>
@@ -104,7 +104,7 @@
                 </footer>
             </div>
             <div width="1600" height="1600">
-                <canvas id="bar5"></canvas>
+                <canvas id="bar7"></canvas>
             </div>
             <footer>
                 <div class="container">
