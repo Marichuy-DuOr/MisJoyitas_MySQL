@@ -1,77 +1,76 @@
 <div class="container filtrar">
-    <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan
-        incorrectos revisalos otra vez</ngb-alert>
+    <ngb-alert id="uno" type="danger" (close)="cerrar('uno')">Algunos de los campos no han sido llenados o estan incorrectos revisalos otra vez</ngb-alert>
     <ngb-alert id="dos" type="success" (close)="cerrar('dos')">Se registraron los datos correctamente</ngb-alert>
     <div class="row" *ngIf="user; else loading">
         <div class="col-md-3 col-lg-3" *ngIf="this.estado!='1'"></div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="this.estado=='1'">
             <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr class="table-success">
-                            <th scope="col-10" colspan="6" class="text-center">Perfil de Usuario</th>
-                            <th scope="col" class="text-center">
-                                <button type="button" class="btn btn-outline-primary" (click)="editUser()"><i
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr class="table-success">
+                                    <th scope="col-10" colspan="6" class="text-center">Perfil de Usuario</th>
+                                    <th scope="col" class="text-center">
+                                        <button type="button" class="btn btn-outline-primary" (click)="editUser()"><i
                                         class="fas fa-edit"></i></button>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Nombre</th>
-                            <td colspan="6">{{user.nombre}} {{user.ape_pat}} {{user.ape_mat}}</td>
-                        </tr>
-                        <tr>
-                            <th colspan="1">Correo</th>
-                            <td colspan="2">{{user.correo}}</td>
-                            <th colspan="1">Teléfono</th>
-                            <td colspan="2">{{user.telefono}}</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th scope="col" colspan="6" class="text-center">Dirección</th>
-                            <th scope="col" class="text-center">
-                                <button type="button" class="btn btn-outline-primary" (click)="editDireccion()"><i
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td colspan="6">{{user.nombre}} {{user.ape_pat}} {{user.ape_mat}}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Correo</th>
+                                    <td colspan="2">{{user.correo}}</td>
+                                    <th colspan="1">Teléfono</th>
+                                    <td colspan="2">{{user.telefono}}</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <th scope="col" colspan="6" class="text-center">Dirección</th>
+                                    <th scope="col" class="text-center">
+                                        <button type="button" class="btn btn-outline-primary" (click)="editDireccion()"><i
                                         class="fas fa-edit"></i></button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th colspan="1">Estado</th>
-                            <td colspan="1">{{user.estado}}</td>
-                            <th colspan="1">Municipio</th>
-                            <td colspan="1">{{user.municipio}}</td>
-                            <th colspan="1">CP</th>
-                            <td colspan="1">{{user.cp}}</td>
-                        </tr>
-                        <tr >
-                            <th>Colonia</th>
-                            <td>{{user.colonia}}</td>
-                            <th>Calle</th>
-                            <td>{{user.calle}}</td>
-                            <th>Numero</th>
-                            <td>#{{user.numero}} {{user.interior}}</td>
-                        </tr>
-                        <tr class="table-success">
-                            <th scope="col-12" colspan="7" class="text-center">Compras</th>
-                        </tr>
-                        <tr *ngFor="let v of ventas">
-                            <th>Fecha</th>
-                            <td>{{v.fecha | date:'yyyy-MM-dd'}}</td>
-                            <th>Tarjeta</th>
-                            <td>{{v.num_tarjeta}}</td>
-                            <th>Total</th>
-                            <td>${{v.total}}.00</td>
-                            <th scope="col" class="text-center">
-                                <button type="button" class="btn btn-outline-primary" (click)="factura(v.id)"><i
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Estado</th>
+                                    <td colspan="1">{{user.estado}}</td>
+                                    <th colspan="1">Municipio</th>
+                                    <td colspan="1">{{user.municipio}}</td>
+                                    <th colspan="1">CP</th>
+                                    <td colspan="1">{{user.cp}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Colonia</th>
+                                    <td>{{user.colonia}}</td>
+                                    <th>Calle</th>
+                                    <td>{{user.calle}}</td>
+                                    <th>Numero</th>
+                                    <td>#{{user.numero}} {{user.interior}}</td>
+                                </tr>
+                                <tr class="table-success">
+                                    <th scope="col-12" colspan="7" class="text-center">Compras</th>
+                                </tr>
+                                <tr *ngFor="let v of ventas">
+                                    <th>Fecha</th>
+                                    <td>{{v.fecha | date:'yyyy-MM-dd'}}</td>
+                                    <th>Tarjeta</th>
+                                    <td>{{v.num_tarjeta}}</td>
+                                    <th>Total</th>
+                                    <td>${{v.total}}.00</td>
+                                    <th scope="col" class="text-center">
+                                        <button type="button" class="btn btn-outline-primary" (click)="factura(v.id)"><i
                                         class="fas fa-eye"></i></button>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
 
         <div class="card col-xs-12 col-sm-12 col-md-6 col-lg-6" *ngIf="this.estado=='2'">
@@ -85,19 +84,16 @@
                     <div class="form-group form-row">
                         <div class="col">
                             <label for="exampleInputEmail1">Apellido paterno</label>
-                            <input type="text" class="form-control" formControlName="ape_pat" placeholder="Muñoz"
-                                required>
+                            <input type="text" class="form-control" formControlName="ape_pat" placeholder="Muñoz" required>
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1">Apellido materno</label>
-                            <input type="text" class="form-control" formControlName="ape_mat" placeholder="López"
-                                required>
+                            <input type="text" class="form-control" formControlName="ape_mat" placeholder="López" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Teléfono</label>
-                        <input type="tel" class="form-control" formControlName="telefono" placeholder="4491234567"
-                            required>
+                        <input type="tel" class="form-control" formControlName="telefono" placeholder="4491234567" required>
                     </div>
 
                     <div class="form-group">
@@ -123,12 +119,10 @@
                             <label for="exampleInputEmail1">Buscar municipio</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" formControlName="busqueda"
-                                placeholder="aguascalientes">
+                            <input type="text" class="form-control" formControlName="busqueda" placeholder="aguascalientes">
                         </div>
                         <div class="col">
-                            <button (click)="getMunicipio(editDireccionForm.value.busqueda)"
-                                class="btn btn-info">Buscar</button>
+                            <button (click)="getMunicipio(editDireccionForm.value.busqueda)" class="btn btn-info">Buscar</button>
                         </div>
                     </div>
 
@@ -206,15 +200,14 @@
                                         </div>
                                     </div>
                                 </header>
-        
+
                                 <section>
                                     <div class="details clearfix">
                                         <div class="client left">
                                             <p class="estilo">Factura a:</p>
                                             <p class="name estilo">{{user.nombre}} {{user.ape_pat}} {{user.ape_mat}}</p>
                                             <p class="estilo">
-                                                {{user.calle}} #{{user.numero}} {{user.interior}},<br>
-                                                {{user.colonia}}
+                                                {{user.calle}} #{{user.numero}} {{user.interior}},<br> {{user.colonia}}
                                             </p>
                                             <a class="estilo">{{user.correo}}</a>
                                         </div>
@@ -249,8 +242,7 @@
                                                     <tr>
                                                         <td class="no">{{prod.n}}</td>
                                                         <td class="desc"> <strong>{{prod.nombre}}</strong>
-                                                         <br>
-                                                         {{prod.descripcion}}
+                                                            <br> {{prod.descripcion}}
                                                         </td>
                                                         <td class="qty">{{prod.cantidad}}</td>
                                                         <td class="unit">{{prod.precio}}</td>
@@ -278,7 +270,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="grand-total" colspan="5">
-                                                            <div><span>TOTAL:</span>${{this.t}}.00</div>
+                                                            <div><span>TOTAL:</span>${{this.subt+170}}.00</div>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -286,7 +278,7 @@
                                         </div>
                                     </div>
                                 </section>
-        
+
                                 <footer>
                                     <div class="container">
                                         <div class="thanks">¡Gracias por tu compra!</div>
@@ -300,7 +292,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1"></div>
             </div>
-            
+
         </div>
     </div>
 </div>
