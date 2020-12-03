@@ -33,7 +33,9 @@ export class Reporte10Component implements OnInit {
     }
 
     open(content) {
-  
+      this.ejeY = []; // quita los datos anteriores en caso de haberlos
+      this.ejeX = [];
+      
         this.modalService.open(content, { size: 'lg' }); // abre el modal y define que tamaño va a tener
         this.mysqlService
         .consulta(`${environment.API_URL}/reporte-ventas4`)

@@ -23,10 +23,10 @@ export class JoyasComponent implements OnInit {
       this.productos = [];
       console.log(params['id']);
       if ( params['id'] === '1') {
-        this.tp = this.t[0];
+        this.tp = this.t[1];
         this.consulta();
       } else if ( params['id'] === '12' ) {
-        for (let i = 12; i < 18; i++) {
+        for (let i = 12; i < 17; i++) {
           this.consultaTipo( i.toString() );
           this.tp = this.t[i];
         }
