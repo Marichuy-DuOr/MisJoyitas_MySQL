@@ -51,7 +51,6 @@
                                     <th>Numero</th>
                                     <td>#{{user.numero}} {{user.interior}}</td>
                                 </tr>
-                            <div *ngIf="(user$ | async)?.rol === 'client'">
                                 <tr class="table-success">
                                     <th scope="col-12" colspan="7" class="text-center">Compras</th>
                                 </tr>
@@ -67,7 +66,6 @@
                                         class="fas fa-eye"></i></button>
                                     </th>
                                 </tr>
-                            </div>
                             </tbody>
                         </table>
                     </div>

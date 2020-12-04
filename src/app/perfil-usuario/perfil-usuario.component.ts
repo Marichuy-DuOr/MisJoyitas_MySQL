@@ -61,6 +61,8 @@ export class PerfilUsuarioComponent implements OnInit {
     this.actualizar();
     document.getElementById('uno').style.display = 'none';
     document.getElementById('dos').style.display = 'none';
+    this.mysqlService.consulta(`${environment.API_URL}/facturas`);
+
   }
 
   public actualizar() {
@@ -94,7 +96,6 @@ export class PerfilUsuarioComponent implements OnInit {
         this.ventas = res.array;
         console.log(res.array);
       });
-
   }
 
   public editUser() {
